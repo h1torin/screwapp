@@ -4,14 +4,6 @@ Reaction.destroy_all
 Category.destroy_all
 Comment.destroy_all
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 puts "Testing"
 user_6 = User.create(email: "blu@me.com", password: "123456", nickname: "blueberry", emoji: "😅", background_color: "blue")
 user_7 = User.create(email: "bla@me.com", password: "123456", nickname: "blackberry", emoji: "🤠", background_color: "black")
@@ -19,6 +11,7 @@ user_8 = User.create(email: "rasp@me.com", password: "123456", nickname: "raspbe
 user_9 = User.create(email: "brick@me.com", password: "123456", nickname: "brickleberry", emoji: "🐶", background_color: "green")
 user_10 = User.create(email: "straw@me.com", password: "123456", nickname: "strawberry", emoji: "🥸", background_color: "red")
 
+puts "Testing category"
 
 first_category = Category.create(name: "Work and Study")
 second_category = Category.create(name: "Finance")
@@ -39,3 +32,5 @@ post = Post.create(user: user_9, content: "I screw up pretty big at Relationship
 post = Post.create(user: user_10, content: "I screw up pretty big at Family!", category: fifth_category)
 post.reactions.create(user: user_8)
 puts "Finished testing"
+post = Post.create(user_id: 1, content: "I screw up pretty big at home!", category_id: 5)
+puts "Finished category"
