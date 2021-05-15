@@ -11,7 +11,8 @@ const preview = () => {
     })
   })
 
-  // const nickname = document.getElementById("")
+  const nickname = document.getElementById("user_nickname");
+
 
 }
 
