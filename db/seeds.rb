@@ -1,3 +1,9 @@
+User.destroy_all
+Post.destroy_all
+Reaction.destroy_all
+Category.destroy_all
+Comment.destroy_all
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -7,7 +13,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Testing category"
-user = User.create(email: "me@me.com", password: "123456", nickname: "blueberry", emoji: ":)", background_color: "blue")
+user = User.create(email: "me@me.com", password: "123456", nickname: "blueberry", emoji: "😊", background_color: "blue")
+user_2 = User.create(email: "you@me.com", password: "123456", nickname: "blackberry", emoji: "😬", background_color: "black")
 
 first_category = Category.create(name: "Work and Study")
 second_category = Category.create(name: "Finance")
@@ -21,5 +28,6 @@ ninth_category = Category.create(name:  "Other Screw-ups")
 
 
 
-post = Post.create(user_id: 5, content: "I screw up pretty big at home!", category_id: 11)
+post = Post.create(user: user, content: "I screw up pretty big at home!", category: third_category)
+post.reactions.create(user: user_2)
 puts "Finished category"
