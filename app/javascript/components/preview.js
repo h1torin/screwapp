@@ -10,5 +10,17 @@ const preview = () => {
       avatarPreview.innerText = emoji.value
     })
   })
+
+  // const nickname = document.getElementById("")
+
 }
+
+
+
+
+
+
+
+
 export default preview
+
