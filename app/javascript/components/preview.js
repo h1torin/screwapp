@@ -25,7 +25,7 @@ const preview = () => {
     console.log(nickname);
 
     const nicknamePreview = document.getElementById("preview")
-    nicknamePreview.innerHTML = nickname.value
+    nicknamePreview.innerHTML = nickname
   })
 
 }
