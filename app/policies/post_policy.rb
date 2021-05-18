@@ -5,6 +5,10 @@ class PostPolicy < ApplicationPolicy
     end
   end
 
+  def hashtags?
+    true
+  end
+
   def create?
     true
   end

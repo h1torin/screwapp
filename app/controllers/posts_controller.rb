@@ -4,6 +4,12 @@ class PostsController < ApplicationController
     @posts = policy_scope(Post).order(created_at: :desc)
   end
 
+  def hashtags
+    tag = Tag.find_by(name: params[:name])
+    @posts = tag.posts
+    authorize @posts
+  end
+
   def new
     @post = Post.new
     authorize @post
