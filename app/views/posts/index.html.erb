@@ -7,11 +7,17 @@
     <% unless post.hide_content? %>
      <p><%= post.content %></p>
     <% end %>
-    <%= link_to 'Edit', edit_post_url(post) %>
-    <%= link_to 'Delete', post_path(post),
-      method: :delete,
-      data: { confirm: "Are you sure?"} %>
+    <% if post.photo.attached? %>
+      <image src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
+    <% end %>
+    <br>
+      <%= link_to 'Edit', edit_post_url(post) %>
+      <%= link_to 'Delete', post_path(post),
+        method: :delete,
+        data: { confirm: "Are you sure?"} %>
 
   </li>
 </ul>
 <% end %>
+
+
