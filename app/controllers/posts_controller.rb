@@ -43,6 +43,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :category_id, :hide_user, :hide_content, :id_user)
+    params.require(:post).permit(:content, :category_id, :hide_user, :hide_content, :id_user, :photo)
   end
 end
