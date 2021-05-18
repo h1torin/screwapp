@@ -1,17 +1,31 @@
-<h1>Screwfeeds</h1>
+<div class="container">
+  <div class="col-md-6">
+    <h1>Screwfeed</h1>
+  </div>
 
-<% @posts.each do |post| %>
-
-<ul>
-  <li>
-    <% unless post.hide_content? %>
-     <p><%= post.content %></p>
+  <div class="column">
+    <% @posts.each do |post| %>
+    <div class="col-md-6">
+          <% unless post.hide_content? %>
+           <p><%= post.content %></p>
+          <% end %>
+          <% if post.photo.attached? %>
+            <image src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
+          <% end %>
+          <br>
+          <%= link_to edit_post_url(post) do %>
+            <span title="Edit the post"><i class="bi bi-screwdriver"></i></span>
+          <% end %>
+          <%= link_to post_path(post),
+              method: :delete,
+              data: { confirm: "Are you sure?"} do %>
+            <span title="Delete the post"><i class="bi bi-trash" style="color:red;"></i></span>
+          <% end %>
+    </div>
     <% end %>
-    <%= link_to 'Edit', edit_post_url(post) %>
-    <%= link_to 'Delete', post_path(post),
-      method: :delete,
-      data: { confirm: "Are you sure?"} %>
+  </div>
 
-  </li>
-</ul>
-<% end %>
+
+</div>
+
+
