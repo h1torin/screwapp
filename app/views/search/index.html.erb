@@ -1,2 +1,50 @@
-<h1>Search#index</h1>
-<p>Find me in app/views/search/index.html.erb</p>
+<!-- Please note that the container divs are all removable. -->
+<div class="container mt-4 mb-4">
+  <%= form_with url: search_index_path(name: :query), method: :get, local: true, class: 'form-inline search-form' do |form| %>
+  <%= form.text_field :query, value: params[:query], class: 'form-control mr-sm-2', placeholder: '#search' %>
+<% end %>
+</div>
+
+<div class="container">
+  <div class="search-page">
+    <% if @posts.exists? %>
+      <h1>Top Results</h1>
+    <% else %>
+      <h1>Oop! No matching posts ...</h1>
+    <% end %>
+  <div class="user-images">
+      <% @posts.each do |post|%>
+        <div class="wrapper">
+          <%#=image_tag post.image %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+
+<% tag = Tag.find_by_name(params[:name]) %>
+  <div class="container">
+    <div class="column">
+<!--       <h2><%#= tag.posts.count %> <%#= 'Post'.pluralize(tag.posts.count) %> for the #<%#= params[:name] %></h2>
+ -->      <% @posts.each do |post| %>
+      <div class="col-md-6 mt-2">
+            <% unless post.hide_content? %>
+             <p><%= render_with_hashtags(post.content) %></p>
+            <% end %>
+            <% if post.photo.attached? %>
+              <image src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
+            <% end %>
+            <%= link_to edit_post_url(post) do %>
+              <span title="Edit the post"><i class="bi bi-screwdriver"></i></span>
+            <% end %>
+            <%= link_to post_path(post),
+                method: :delete,
+                data: { confirm: "Are you sure?"} do %>
+              <span title="Delete the post"><i class="bi bi-trash" style="color:red;"></i></span>
+            <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
