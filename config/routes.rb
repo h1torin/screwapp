@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#profile', as: 'profile'
 
     resources :posts do
-    resources :comments, only: [ :new, :create ] # doesn't really require new but we can keep it here for the time being.
+    resources :comments, only: [ :new, :create ] 
+    resources :reactions, only: [ :create ] 
+    # doesn't really require new but we can keep it here for the time being.
     end
     # Figure out if the reactions need a route.
     # resources :reactions, only: [ :create, :show ]
