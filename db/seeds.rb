@@ -3,6 +3,7 @@ Post.destroy_all
 Reaction.destroy_all
 Category.destroy_all
 Comment.destroy_all
+Tag.destroy_all
 
 puts "Testing"
 user_6 = User.create(email: "blu@me.com", password: "123456", nickname: "blueberry", emoji: "😅", background_color: "blue")
@@ -33,4 +34,6 @@ post = Post.create(user: user_10, content: "I screw up pretty big at Family!", c
 post.reactions.create(user: user_8)
 puts "Finished testing"
 post = Post.create(user_id: 1, content: "I screw up pretty big at home!", category_id: 5)
+
+
 puts "Finished category"
