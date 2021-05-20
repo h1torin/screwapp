@@ -6,5 +6,9 @@ class ReactionsController < ApplicationController
   end
 
   def destroy
+    reaction = Reaction.find(params["id"])
+    authorize(reaction)
+    reaction.destroy
+    redirect_to posts_path
   end
 end

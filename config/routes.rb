@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
     resources :posts do
     resources :comments, only: [ :new, :create ] 
-    resources :reactions, only: [ :create ] 
+    resources :reactions, only: [ :create, :destroy ] 
     # doesn't really require new but we can keep it here for the time being.
     end
     # Figure out if the reactions need a route.
