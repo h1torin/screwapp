@@ -1,29 +1,32 @@
-<div class="navbar-lewagon">
-  <ul class="navbar-nav">
-    <% if user_signed_in? %>
+<div class="container">
+  <div class="navbar-lewagon">
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
 
-      <div class="list-icons-nav-bar" >
-        <li class="nav-item active">
-          <%= link_to posts_path, class: "nav-link" do %>
-          <i class="bi bi-house-fill" > </i>
-          <% end %>
-        </li>
+        <div class="list-icons-nav-bar" >
+          <li class="nav-item active">
+            <%= link_to posts_path, class: "nav-link" do %>
+            <i class="bi bi-house-fill" > </i>
+            <% end %>
+          </li>
 
-        <li class="nav-item active">
-          <%= link_to new_post_path, class: "nav-link" do %>
-          <i class="bi bi-screwdriver"></i>
-          <% end %>
-        </li>
+          <li class="nav-item active">
+            <%= link_to new_post_path, class: "nav-link" do %>
+            <i class="bi bi-screwdriver"></i>
+            <% end %>
+          </li>
 
-        <li class="nav-item active">
-          <%= link_to '<i class="bi bi-person-circle"></i>'.html_safe, profile_path, class: "nav-link" %>
-        </li>
-      </div>
+          <li class="nav-item active">
+            <%= link_to '<i class="bi bi-person-circle"></i>'.html_safe, profile_path, class: "nav-link" %>
+          </li>
+        </div>
 
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      <% end %>
-  </ul>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+    </ul>
+  </div>
+
 </div>

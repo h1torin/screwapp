@@ -11,7 +11,6 @@
   <div class="user-images">
       <% @posts.each do |post|%>
         <div class="wrapper">
-          <%#=image_tag post.image %>
         </div>
       <% end %>
     </div>
@@ -44,3 +43,12 @@
       <% end %>
     </div>
   </div>
+
+<% @hashtags.each do |hashtag| %>
+  <%= hashtag.name %>
+<% end %>
+
+
+
+
+

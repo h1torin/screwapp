@@ -18,7 +18,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # @comment = Comment.new(post_id: params[:post_id])
     authorize @post
   end
 
