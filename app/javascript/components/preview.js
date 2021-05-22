@@ -1,6 +1,7 @@
 const preview = () => {
   const color = document.getElementById("user_background_color");
   const emoji = document.getElementById("user_emoji");
+  const nicknameinput = document.getElementById("user_nickname");
   const avatarPreview = document.getElementById("avatar-preview");
   // console.log(color, emoji)
   [color, emoji].forEach(input => {
@@ -26,9 +27,13 @@ const preview = () => {
 
     const nicknamePreview = document.getElementById("preview")
     nicknamePreview.innerHTML = nickname
+    nicknameinput.value = nickname
   })
 
 }
 
 export default preview
+
+// <%= link_to_remote "Profile", :url => {:controller=>'users', :action =>'profile'},  :method => :profile, :with =>"preview();" %>
+
 

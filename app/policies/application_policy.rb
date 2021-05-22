@@ -14,6 +14,10 @@ class ApplicationPolicy
     false
   end
 
+  def hashtags?
+    false
+  end
+
   def create?
     false
   end
@@ -37,6 +41,7 @@ class ApplicationPolicy
   def profile?
     false
   end
+
 
   class Scope
     attr_reader :user, :scope
