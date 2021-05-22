@@ -26,7 +26,18 @@
               data: { confirm: "Are you sure?"} do %>
             <span title="Delete the post"><i class="bi bi-trash" style="color:red;"></i></span>
           <% end %>
+          <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+          <% if user_reaction.present? %>
+          <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction), 
+            method: :delete %>
+            <% else %>
+            <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post), 
+              method: :post %>
+          <% end %>
+          <%= link_to "View post", post_path(post), class: 'btn'%>
+          
     </div>
+    
     <% end %>
   </div>
 

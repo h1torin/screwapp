@@ -1,0 +1,10 @@
+<div class="col-md-6">
+    <% unless @post.hide_content? %>
+    <p><%= @post.content %></p>
+    <% end %>
+    <% if @post.photo.attached? %>
+        <image src="<%= (url_for(@post.photo)) %>" style="width: 250px; height: 200px;">
+    <% end %>
+    <br>
+        <span title="Edit the post"><i class="bi bi-screwdriver"></i></span>
+</div>

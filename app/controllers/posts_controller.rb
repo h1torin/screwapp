@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [ :edit, :update, :destroy ]
+  before_action :set_post, only: %i[show edit update destroy]
   def index
     @posts = policy_scope(Post).order(created_at: :desc)
   end
 
+  def show
+  end
   def hashtags
     tag = Tag.find_by(name: params[:name])
     @posts = tag.posts
