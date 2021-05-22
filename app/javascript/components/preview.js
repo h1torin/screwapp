@@ -3,7 +3,7 @@ const preview = () => {
   const emoji = document.getElementById("user_emoji");
   const nicknameinput = document.getElementById("user_nickname");
   const avatarPreview = document.getElementById("avatar-preview");
-  const avatarShow = document.getElementsById("show-avatar");
+  const avatarShow = document.getElementById("show-avatar");
   // console.log(color, emoji)
   [color, emoji].forEach(input => {
     input.addEventListener("change", ()=> {
