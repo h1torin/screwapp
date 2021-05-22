@@ -21,6 +21,7 @@
           <%= link_to edit_post_url(post) do %>
             <span title="Edit the post"><i class="bi bi-screwdriver"></i></span>
           <% end %>
+
           <%= link_to post_path(post),
               method: :delete,
               data: { confirm: "Are you sure?"} do %>
@@ -34,8 +35,10 @@
             <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
               method: :post %>
           <% end %>
-          <%= link_to "View post", post_path(post), class: 'btn'%>
-
+          <%= link_to post_path(post) do %>
+            <span title="Comment"><i class="bi bi-chat-right"></i></span>
+          <%= post.comments.count %>
+          <% end %>
     </div>
 
     <% end %>
