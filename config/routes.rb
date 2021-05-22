@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get '/posts/hashtag/:name', to: 'posts#hashtags', as: 'hashtag'
   get 'search/index', to: 'search#index'
     resources :posts do
-    resources :comments, only: [ :new, :create ] 
-    resources :reactions, only: [ :create, :destroy ] 
+      resources :comments, only: [ :index, :new, :create ]
+      resources :reactions, only: [ :create, :destroy ]
     # doesn't really require new but we can keep it here for the time being.
     end
     # Figure out if the reactions need a route.
