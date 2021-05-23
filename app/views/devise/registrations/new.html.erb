@@ -1,8 +1,7 @@
 <div class="container col-9">
 
-  <h3>Sign up</h3>
-
-  <h1>Funny headline</h1>
+  <p>Do you need some support today?</p>
+  <p>We are here for you!</p>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
@@ -39,31 +38,31 @@
 
       <%= f.input :nickname, as: :hidden %>
 
-      <div>
-
+      <div class="preview-box">
         <div id="generate-nickname-btn">
           Generate Nickname
         </div>
-      </div>
 
-      <div class="d-flex justify-content-around">
-        <div id="avatar-preview">
+        <div class="d-flex justify-content-around">
+          <div id="avatar-preview">
+          </div>
 
+          <div id="nickname-preview">
+            <p id="preview"></p>
+          </div>
         </div>
-        <div id="nickname-preview">
-          <p id="preview"></p>
-        </div>
       </div>
-
-
 
     </div>
 
     <div class="form-actions">
       <%= f.button :submit, "Create Account" %>
+      <% end %>
     </div>
-  <% end %>
 
-  <%= render "devise/shared/links" %>
+    <p>Already a user?</p>
+    <%- if controller_name != 'sessions' %>
+      <%= link_to "Log in", new_session_path(resource_name) %><br />
+    <% end %>
 
 </div>
