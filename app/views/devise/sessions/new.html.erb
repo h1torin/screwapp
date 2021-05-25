@@ -17,7 +17,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
+          <%= f.button :submit, "Log in", class: "btn-primary btn-rounded-blue" %>
         </div>
         <% end %>
 
@@ -28,7 +28,7 @@
         <p>Not a user yet?</p>
           <div>
             <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-              <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+              <%= link_to "Sign up", new_registration_path(resource_name), class: "btn-info btn-rounded-white" %><br />
             <% end %>
           </div>
 

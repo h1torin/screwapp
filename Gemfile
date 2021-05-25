@@ -40,6 +40,8 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'pundit'
 
+# gem 'searchkick', '~> 4.0'
+
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

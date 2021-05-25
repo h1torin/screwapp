@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="navbar-lewagon">
+
+<% if user_signed_in? %>
+  <div class="navbar-lewagon navbar-expand-sm">
     <ul class="navbar-nav">
-      <% if user_signed_in? %>
 
         <div class="list-icons-nav-bar" >
           <li class="nav-item active">
@@ -16,7 +16,7 @@
             <% end %>
           </li>
 
-          <li class="nav-item active">
+          <li>
             <%= link_to '<i class="bi bi-person-circle"></i>'.html_safe, profile_path, class: "nav-link" %>
           </li>
         </div>
@@ -25,8 +25,6 @@
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
-        <% end %>
     </ul>
   </div>
-
-</div>
+<% end %>
