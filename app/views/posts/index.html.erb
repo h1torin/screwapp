@@ -10,13 +10,13 @@
            <p><%= render_with_hashtags(post.content) %></p>
           <% end %>
           <% unless post.hide_user? %>
-            <p><%= post.user.nickname %></p>
+            <p class='screw-nickname'><%= post.user.nickname %></p>
             <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
               <%= post.user.emoji %>
             </div>
           <% end %>
           <% if post.photo.attached? %>
-            <image src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
+            <img src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
           <% end %>
           <%= link_to edit_post_url(post) do %>
             <span title="Edit the post"><i class="bi bi-screwdriver"></i></span>
