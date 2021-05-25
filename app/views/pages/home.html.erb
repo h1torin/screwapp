@@ -1,5 +1,11 @@
+   <style>
+     body {background-color: orange;}
+   </style>
 <div class="container">
-  <div>
+    <div class="home-banner">
+      <%= image_tag('home.png') %>
+    </div>
+
     <div class="logo-and-text">
       <h1>Screw App</h1>
       <p> * insert logo here * </p>
@@ -14,6 +20,5 @@
       <%= link_to "Login", new_user_session_path, class: "btn-primary btn-rounded-blue" %>
       <%= link_to "Sign-up", new_user_registration_path, class: "btn-info btn-rounded-white" %>
     </div>
-  </div>
 </div>
 
