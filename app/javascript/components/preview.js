@@ -6,13 +6,13 @@ const preview = () => {
   const avatarShow = document.getElementById("show-avatar");
   // console.log(color, emoji)
   [color, emoji].forEach(input => {
+    if (input) {
     input.addEventListener("change", ()=> {
       avatarPreview.style.backgroundColor = color.value
       avatarPreview.innerText = emoji.value
-      avatarShow.style.backgroundColor = color.value
-      avatarShow.innerText = emoji.value
-    })
-  })
+    });
+    };
+  });
 
 
   const nicknameButton = document.getElementById("generate-nickname-btn")
