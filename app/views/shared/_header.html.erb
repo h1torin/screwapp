@@ -1,0 +1,30 @@
+  <div class="header">
+
+      <ul class="d-flex justify-content-between">
+        <% if user_signed_in? %>
+
+        <!-- insert search bar here -->
+
+          <ol>
+            <div class="header-search container mt-2 mb-2">
+              <%= form_with url: search_index_path(name: :query), method: :get, local: true, class: 'form-inline search-form' do |form| %>
+              <%= form.text_field :query, value: params[:query], class: 'form-control mr-sm-1', placeholder: 'Search screw-ups' %>
+            <% end %></div>
+          </ol>
+
+          <ol class="nav-item active">
+            <%= link_to new_post_path, class: "nav-link" do %>
+            <i class="bi bi-circle-square"></i>
+            <% end %>
+          </ol>
+
+        <% else %>
+          <li >
+            <%= link_to "Login", new_user_session_path %>
+          </li>
+        <% end %>
+      </ul>
+  </div>
+
+
+

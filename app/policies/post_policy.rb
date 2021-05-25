@@ -5,6 +5,10 @@ class PostPolicy < ApplicationPolicy
     end
   end
 
+  # comment
+  def show?
+    true
+  end
   def hashtags?
     true
   end

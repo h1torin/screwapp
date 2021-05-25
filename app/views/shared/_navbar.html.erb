@@ -1,56 +1,32 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand" do %>
-
-  <h3>Screwuplogo</h3>
-    <%#= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+<div class="container">
+  <div class="navbar-lewagon">
+    <ul class="navbar-nav">
       <% if user_signed_in? %>
 
-        <li class="nav-item active">
-          <%= link_to "Screwfeed", posts_path, class: "nav-link" %>
-        </li>
+        <div class="list-icons-nav-bar" >
+          <li class="nav-item active">
+            <%= link_to posts_path, class: "nav-link" do %>
+            <i class="bi bi-house-fill" > </i>
+            <% end %>
+          </li>
 
-        <li class="nav-item active">
-          <%= link_to "ScrewSearch", posts_path, class: "nav-link" %>
-        </li>
+          <li class="nav-item active">
+            <%= link_to new_post_path, class: "nav-link" do %>
+            <i class="bi bi-screwdriver"></i>
+            <% end %>
+          </li>
 
-        <li class="nav-item active">
-          <%= link_to "Write a new post", new_post_path, class: "nav-link" %>
-        </li>
+          <li class="nav-item active">
+            <%= link_to '<i class="bi bi-person-circle"></i>'.html_safe, profile_path, class: "nav-link" %>
+          </li>
+        </div>
 
-        <li class="nav-item active">
-          <%= link_to "Notifications", new_post_path, class: "nav-link" %>
-        </li>
-
-        <li class="nav-item active">
-          <%= link_to "Profile", profile_path, class: "nav-link" %>
-        </li>
-
-
-<!--         I commented this out because out navbar has no dropdown from the profile picture or profile picture -->
- <!-- <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li> -->
-
-
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      <% end %>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
     </ul>
   </div>
+
 </div>

@@ -1,9 +1,5 @@
 <!-- Please note that the container divs are all removable. -->
-<div class="container mt-4 mb-4">
-  <%= form_with url: search_index_path(name: :query), method: :get, local: true, class: 'form-inline search-form' do |form| %>
-  <%= form.text_field :query, value: params[:query], class: 'form-control mr-sm-2', placeholder: 'Search screw-ups' %>
-    <%= submit_tag("Search") %>
-<% end %>
+
 
 <div class="container mt-4">
   <div class="search-page">
@@ -15,7 +11,6 @@
   <div class="user-images">
       <% @posts.each do |post|%>
         <div class="wrapper">
-          <%#=image_tag post.image %>
         </div>
       <% end %>
     </div>
@@ -48,3 +43,12 @@
       <% end %>
     </div>
   </div>
+
+<% @hashtags.each do |hashtag| %>
+  <%= hashtag.name %>
+<% end %>
+
+
+
+
+

@@ -1,0 +1,20 @@
+
+<div class="container mt-5">
+  <div class="col-md-6">
+      <% unless @post.hide_content? %>
+      <p><%= @post.content %></p>
+      <% end %>
+      <% if @post.photo.attached? %>
+          <image src="<%= (url_for(@post.photo)) %>" style="width: 250px; height: 200px;">
+      <% end %>
+</div>
+
+<div class="card my-1">
+  <div class="card-body">
+    <p class="font-weight-bold">Comments</p>
+    <%= render 'comments/new', post: @post %>
+  </div>
+</div>
+
+<%= render 'comments/index' %>
+
