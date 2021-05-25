@@ -1,20 +1,49 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+</head>
+<body>
 <div class="container mt-5">
-  <div class="col-md-6">
-      <% unless @post.hide_content? %>
-      <p><%= @post.content %></p>
-      <% end %>
-      <% if @post.photo.attached? %>
-          <image src="<%= (url_for(@post.photo)) %>" style="width: 250px; height: 200px;">
-      <% end %>
-</div>
+  <div class="screw-post p-5">
+          <div class="d-flex ">
+            <% unless @post.hide_user? %>
+              <div id="show-avatar-profile" style="background-color: <%= @post.user.background_color %> ">
+                <%= @post.user.emoji %>
+              </div>
+              <p><%= @post.user.nickname %></p>
+            <% end %>
+          </div>
+          <% unless @post.hide_content? %>
+           <p><%= render_with_hashtags(@post.content) %></p>
+          <% end %>
+          <% if @post.photo.attached? %>
+            <img src="<%= (url_for(@post.photo)) %>" style="width: auto; height: 200px;">
+          <% end %>
+      <% user_reaction = @post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+          <% if user_reaction.present? %>
+          <%= link_to "Unlike (#{@post.reactions.count})", post_reaction_path(@post, user_reaction),
+            method: :delete %>
+            <% else %>
+            <%= link_to "Like (#{@post.reactions.count})", post_reactions_path(@post),
+              method: :@post %>
+          <% end %>
+          <%= link_to post_path(@post) do %>
+            <span title="Comment"><i class="bi bi-chat-right"></i></span>
+          <%= @post.comments.count %>
+          <% end %>
+    </div>
 
-<div class="card my-1">
-  <div class="card-body">
+<div class="my-4 p-5 screw-post">
+  <div>
     <p class="font-weight-bold">Comments</p>
     <%= render 'comments/new', post: @post %>
   </div>
 </div>
-
+<div class='d-flex justify-content-end'>
+<div class="screw-comments p-5 screw-post">
 <%= render 'comments/index' %>
-
+</div>
+</div>
+</div>
+</body>
+</html>

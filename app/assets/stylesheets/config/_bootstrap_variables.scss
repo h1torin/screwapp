@@ -4,21 +4,35 @@
 // 3. You can override them below!
 
 // General style
+<<<<<<< HEAD
+$font-family-sans-serif: $body-font;
+$headings-font-family: $headers-font;
+$body-bg: #fffaeb;
+=======
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
 $body-bg:                 $light-yellow;
+>>>>>>> 60593d837c6eadd35cef75bd54a44e9a58c10139
 $font-size-base: 1rem;
 
 // Colors
 $body-color: $gray;
+<<<<<<< HEAD
+$primary: $blue;
+$success: $green;
+$info: $yellow;
+$danger: $red;
+$warning: $orange;
+=======
 $primary:    $dark-blue;
 $success:    $light-blue;
 $info:       $white;
 $danger:     $red;
 $warning:    $orange;
+>>>>>>> 60593d837c6eadd35cef75bd54a44e9a58c10139
 
 // Buttons & inputs' radius
-$border-radius:    2px;
+$border-radius: 2px;
 $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
