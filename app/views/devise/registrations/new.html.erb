@@ -49,15 +49,15 @@
       <%= f.input :nickname, as: :hidden %>
 
       <div class="preview-box">
-        <div id="generate-nickname-btn">
+        <div id="generate-nickname-btn" class="btn-primary btn-big-blue text-center" style="height: 38px; padding: 6px 12px;">
           Generate Nickname
         </div>
 
-        <div class="d-flex justify-content-around">
-          <div id="avatar-preview">
+        <div class="d-flex justify-content-center avatar-nickname">
+          <div id="avatar-preview" class="mt-2">
           </div>
 
-          <div id="nickname-preview">
+          <div id="nickname-preview" class="mt-3 ml-2">
             <p id="preview"></p>
           </div>
         </div>
@@ -66,13 +66,14 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Create Account" %>
+      <%= f.button :submit, "Create Account", class: "btn-primary btn-big-blue" %>
       <% end %>
     </div>
 
-    <p>Already a user?</p>
-    <%- if controller_name != 'sessions' %>
-      <%= link_to "Log in", new_session_path(resource_name) %><br />
-    <% end %>
+<!-- according to Figma, we don't this part but in case you want to have, you just need to activate the code. -->
+<!--     <p>Already a user?</p>
+ -->    <%#- if controller_name != 'sessions' %>
+      <%#= link_to "Log in", new_session_path(resource_name) %><br />
+    <%# end %>
 
 </div>
