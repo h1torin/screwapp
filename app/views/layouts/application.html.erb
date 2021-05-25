@@ -13,7 +13,9 @@
 
   <body>
     <div class="d-flex flex-column min-vh-100">
+    <% if current_user %>
     <%= render 'shared/header' %>
+    <% end %>
     <br>
     <br>
       <%= render 'shared/flashes' %>
@@ -21,6 +23,9 @@
         <%= yield %>
       </article>
     </div>
+      <% if current_user %>
+      <%= render 'shared/navbar' %>
+      <% end %>
   </body>
       <%= render 'shared/navbar' %>
 </html>
