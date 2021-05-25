@@ -5,12 +5,12 @@
 <body>
 <div class="container mt-5">
   <div class="screw-post p-5">
-          <div class="d-flex ">
+          <div class="d-flex">
             <% unless @post.hide_user? %>
               <div id="show-avatar-profile" style="background-color: <%= @post.user.background_color %> ">
                 <%= @post.user.emoji %>
               </div>
-              <p><%= @post.user.nickname %></p>
+              <p class='screw-nickname' ><%= @post.user.nickname %></p>
             <% end %>
           </div>
           <% unless @post.hide_content? %>
