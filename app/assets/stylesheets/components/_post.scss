@@ -11,6 +11,19 @@
   width: 80%;
 }
 
+.screw-nickname {
+  font-family: "Nanum Pen Script";
+  font-size: 24px;
+  color: #0800d8;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #0800d8;
+  text-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
+}
+
+.screw-author {
+  align-content: center;
+}
+
 .card-trip > img {
   height: 200px;
   width: 100%;
