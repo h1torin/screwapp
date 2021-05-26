@@ -1,7 +1,10 @@
 .navbar-lewagon {
+  position: relative;
+  padding: 10px;
   justify-content: space-between;
-  background: white;
-  height: 3.5rem;
+  background: $light-yellow;
+  // opacity: .5;
+  height: 5.5rem;
   width:100%;
   position: sticky;
   bottom: 0;
@@ -19,3 +22,4 @@
   display: flex;
   justify-content: space-around;
 }
+
