@@ -32,7 +32,6 @@
   width: 100%;
 }
 
-
 // buttons navbar //
 
 .btn-rounded-white-navbar {
@@ -43,15 +42,16 @@
 }
 
 .add-post-btn {
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  width: 80px;
   padding: 10px 28px;
   border-radius: 50%;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
   background: $dark-blue;
   opacity: 1;
   color: $white;
-  font-size: 60px;
+  font-size: 50px;
+  align-self: center;
 }
 
 // buttons header //

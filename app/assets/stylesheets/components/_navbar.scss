@@ -1,12 +1,11 @@
 .navbar-lewagon {
-  position: relative;
-  padding: 10px;
+  position: fixed;
+  padding: 0;
   justify-content: space-between;
   background: $light-yellow;
   // opacity: .5;
-  height: 5.5rem;
-  width:100%;
-  position: sticky;
+  height: 6rem;
+  width: 100%;
   bottom: 0;
 }
 
@@ -23,3 +22,15 @@
   justify-content: space-around;
 }
 
+.login-bar {
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.middled {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

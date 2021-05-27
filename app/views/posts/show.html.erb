@@ -31,6 +31,26 @@
               <% end %>
           </div>
         </div>
+          <% unless @post.hide_content? %>
+           <p><%= render_with_hashtags(@post.content) %></p>
+          <% end %>
+          <% if @post.photo.attached? %>
+            <img src="<%= (url_for(@post.photo)) %>" style="width: 100%; height: auto;">
+          <% end %>
+      <div class="post-reactions">
+      <% user_reaction = @post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+          <% if user_reaction.present? %>
+          <%= link_to "Unlike (#{@post.reactions.count})  ", post_reaction_path(@post, user_reaction),
+            method: :delete %>
+            <% else %>
+            <%= link_to "Like (#{@post.reactions.count})  ", post_reactions_path(@post),
+              method: :@post %>
+          <% end %>
+          <%= link_to post_path(@post) do %>
+            <span title="Comment"><i class="bi bi-chat pl-3"></i></span>
+          <%= @post.comments.count %>
+          <% end %>
+      </div>
     </div>
   </div>
 

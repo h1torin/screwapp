@@ -2,19 +2,18 @@
      body {background-color: orange;}
    </style>
 <div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-md-6">
-      <div class="home-banner">
-        <%= image_tag('home.png', class: "home-pic") %>
-      </div>
-    </div>
-  </div>
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="logo-and-text">
-        <h1>Screw App</h1>
-        <p> * insert logo here * </p>
-        <p> If life gives you screw-ups, make Screws out of them! </p>
+      <div class="logo-and-text middled">
+        <div class="screw-app-name">Screw App</div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+              <div class="home-banner">
+                <%= image_tag('home.png', class: "home-pic middled") %>
+              </div>
+            </div>
+          </div>  
+        <div class="screw-home-headline middled"> If life gives you screw-ups, make Screws out of them! </div>
       </div>
     </div>
   </div>
@@ -25,7 +24,7 @@
   <div class="row justify-content-center mt-5">
     <div class="col-md-6">
       <div class="buttons d-flex justify-between">
-        <%= link_to "Login", new_user_session_path, class: "btn-primary btn-rounded-blue" %>
+        <%= link_to "Log-in", new_user_session_path, class: "btn-primary btn-rounded-blue" %>
         <%= link_to "Sign-up", new_user_registration_path, class: "btn-info btn-rounded-white" %>
       </div>
     </div>
