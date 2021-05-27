@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="row d-flex justify-content-left ml-5">
+  <div class="row d-flex justify-content-left ml-3">
     <div class="screwfeed">
       <h1 class="mt-5 screw-headline">Hottest screws</h1>
     </div>
@@ -18,7 +18,7 @@
                 <%= post.user.emoji %>
               </div>
               <div class="nickname">
-                <p class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></p>
+                <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
               </div>
             </div>
             <% end %>
@@ -41,19 +41,20 @@
               <img src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
             <% end %>
 
-
-            <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-            <% if user_reaction.present? %>
-            <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-              method: :delete %>
-              <% else %>
-              <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                method: :post %>
-            <% end %>
-            <%= link_to post_path(post) do %>
-              <span title="Comment"><i class="bi bi-chat-right"></i></span>
-            <%= post.comments.count %>
-            <% end %>
+            <div class="post-reactions">
+              <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+              <% if user_reaction.present? %>
+              <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
+                method: :delete %>
+                <% else %>
+                <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
+                  method: :post %>
+              <% end %>
+              <%= link_to post_path(post) do %>
+                <span title="Comment"><i class="bi bi-chat-right"></i></span>
+              <%= post.comments.count %>
+              <% end %>
+            </div>
 
         </div>
       </div>
@@ -61,7 +62,7 @@
     </div>
 
     <% end %>
-  </div>
+  </div>but 
 
 </div>
 

@@ -4,8 +4,8 @@
 </head>
 <body>
 <div class="container mt-5">
-  <div class="screw-post p-5">
-          <div class="flex-container">
+  <div class="screw-post p-4">
+          <div class="avatar-container">
             <% unless @post.hide_user? %>
               <div id="show-avatar-profile" style="background-color: <%= @post.user.background_color %> ">
                 <%= @post.user.emoji %>
@@ -19,6 +19,7 @@
           <% if @post.photo.attached? %>
             <img src="<%= (url_for(@post.photo)) %>" style="width: auto; height: 200px;">
           <% end %>
+      <div class="post-reactions">
       <% user_reaction = @post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
           <% if user_reaction.present? %>
           <%= link_to "Unlike (#{@post.reactions.count})", post_reaction_path(@post, user_reaction),
@@ -31,16 +32,17 @@
             <span title="Comment"><i class="bi bi-chat-right"></i></span>
           <%= @post.comments.count %>
           <% end %>
+      </div>
     </div>
 
-<div class="my-4 p-5 screw-post">
+<div class="my-4 p-4 screw-post">
   <div>
-    <p class="font-weight-bold">Comments</p>
+    <div class="screw-headline">Comments</div>
     <%= render 'comments/new', post: @post %>
   </div>
 </div>
 <div class='d-flex justify-content-end'>
-<div class="screw-comments p-5 screw-post">
+<div class="screw-comments p-4 screw-post">
 <%= render 'comments/index' %>
 </div>
 </div>
