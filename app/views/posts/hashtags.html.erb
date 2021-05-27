@@ -1,26 +1,59 @@
 <% tag = Tag.find_by_name(params[:name]) %>
   <div class="container mt-4">
-    <div class="column">
+    <div class="row d-flex justify-content-center">
       <h2><%= tag.posts.count %> <%= 'Post'.pluralize(tag.posts.count) %> for the #<%= params[:name] %></h2>
-      <% @posts.each do |post| %>
-      <div class="col-md-6 mt-5">
-            <% unless post.hide_content? %>
-             <p><%= render_with_hashtags(post.content) %></p>
-            <% end %>
-            <% if post.photo.attached? %>
-              <image src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
-            <% end %>
-            <%= link_to edit_post_url(post) do %>
-              <span title="Edit the post"><i class="bi bi-screwdriver"></i></span>
-            <% end %>
-            <%= link_to post_path(post),
-                method: :delete,
-                data: { confirm: "Are you sure?"} do %>
-              <span title="Delete the post"><i class="bi bi-trash" style="color:red;"></i></span>
-            <% end %>
-      </div>
-      <% end %>
+
     </div>
   </div>
 
+<div class="container">
+  <div class="column">
+    <% @posts.each do |post| %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="i-post-card">
+          <div class="i-user-info">
+            <% unless post.hide_user? %>
+            <div class="d-flex justify-content-left">
+              <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                <%= post.user.emoji %>
+              </div>
+              <div class="nickname">
+                <p class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></p>
+              </div>
+            </div>
+            <% end %>
+            </div>
 
+            <% unless post.hide_content? %>
+              <p><%= render_with_hashtags(post.content) %></p>
+            <% end %>
+            <% if post.photo.attached? %>
+              <img src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
+            <% end %>
+
+
+            <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+            <% if user_reaction.present? %>
+            <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
+              method: :delete %>
+              <% else %>
+              <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
+                method: :post %>
+            <% end %>
+            <%= link_to post_path(post) do %>
+              <span title="Comment"><i class="bi bi-chat-right"></i></span>
+            <%= post.comments.count %>
+            <% end %>
+
+        </div>
+      </div>
+
+    </div>
+
+    <% end %>
+  </div>
+
+  </div>
+
+</div>
