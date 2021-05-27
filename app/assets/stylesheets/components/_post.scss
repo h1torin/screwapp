@@ -38,39 +38,20 @@ html {
 
 .screw-author {
   align-content: center;
+  padding-bottom: 10px;
 }
 
-.flex-container {
+.avatar-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  padding-bottom: 10px;
 }
 
-.card-trip > img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.card-trip p {
-  font-size: 12px;
-  opacity: 0.7;
-  margin: 0;
-}
-
-.card-trip .card-trip-infos {
-  padding: 16px;
+.post-reactions {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
-}
-
-.card-trip-infos .card-trip-user {
-  position: absolute;
-  right: 16px;
-  top: -20px;
-  width: 40px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 // posts in the index //
@@ -87,6 +68,7 @@ html {
 .i-user-info {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 .i-post-dropdown {
