@@ -1,3 +1,12 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 .screw-post {
   background: #ffffff;
   box-shadow: 0px 1px 7px -3px rgba(0, 0, 0, 0.19);
@@ -19,9 +28,22 @@
   -webkit-text-stroke-color: #0800d8;
   text-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
 }
+.screw-headline {
+  font-family: "Nanum Pen Script";
+  font-size: 36px;
+  color: #d80009;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #d80009;
+}
 
 .screw-author {
   align-content: center;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .card-trip > img {
@@ -71,17 +93,3 @@
   height: 45px;
   width: 45px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
