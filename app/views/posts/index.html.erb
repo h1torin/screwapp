@@ -6,27 +6,42 @@
   <div class="column">
     <% @posts.each do |post| %>
     <div class="col-md-6">
-          <% unless post.hide_content? %>
-           <p><%= render_with_hashtags(post.content) %></p>
-          <% end %>
+      <div class="i-post-card">
+        <div class="i-user-info">
           <% unless post.hide_user? %>
-            <p class='screw-nickname'><%= post.user.nickname %></p>
             <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
               <%= post.user.emoji %>
             </div>
+            <p class='screw-nickname'><%= post.user.nickname %></p>
+          <% end %>
+            <!--dropdown here with options to edit and delete post -->
+            <div>
+            <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="i-post-dropdown-item">
+                  <%= link_to edit_post_url(post) do %>
+                    <span title="Edit the post"><i class="bi bi-screwdriver"></i> edit </span>
+                  <% end %>
+                </a>
+                <a class="i-post-dropdown-item">
+                  <%= link_to post_path(post),
+                      method: :delete,
+                      data: { confirm: "Are you sure?"} do %>
+                    <span title="Delete the post"><i class="bi bi-trash" style="color:red;"></i> delete </span>
+                  <% end %>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <% unless post.hide_content? %>
+            <p><%= render_with_hashtags(post.content) %></p>
           <% end %>
           <% if post.photo.attached? %>
             <img src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
           <% end %>
-          <%= link_to edit_post_url(post) do %>
-            <span title="Edit the post"><i class="bi bi-screwdriver"></i></span>
-          <% end %>
 
-          <%= link_to post_path(post),
-              method: :delete,
-              data: { confirm: "Are you sure?"} do %>
-            <span title="Delete the post"><i class="bi bi-trash" style="color:red;"></i></span>
-          <% end %>
+
           <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
           <% if user_reaction.present? %>
           <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
@@ -39,6 +54,8 @@
             <span title="Comment"><i class="bi bi-chat-right"></i></span>
           <%= post.comments.count %>
           <% end %>
+
+      </div>
     </div>
 
     <% end %>
