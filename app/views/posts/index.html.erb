@@ -2,7 +2,7 @@
 
   <div class="row d-flex justify-content-left ml-3">
     <div class="screwfeed">
-      <h1 class="mt-5 screw-headline">Hottest screws</h1>
+      <div class="mt-5 screw-headline">Hottest screws</div>
     </div>
   </div>
 
@@ -17,9 +17,7 @@
               <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
                 <%= post.user.emoji %>
               </div>
-              <div class="nickname">
                 <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-              </div>
             </div>
             <% end %>
               <!--dropdown here with options to edit and delete post -->
@@ -62,8 +60,6 @@
     </div>
 
     <% end %>
-  </div>
-
 </div>
 
 
