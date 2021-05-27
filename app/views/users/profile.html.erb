@@ -1,18 +1,18 @@
-<div class="container col-9">
-  <br>
-  <p>Hi,<%= @user.nickname %></p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6 mt-5">
+      <p>Hi,<%= @user.nickname %></p>
 
-  <div class="d-flex justify-content-around">
-    <div id="show-avatar-profile" style="background-color: <%= @user.background_color %> ">
-      <!-- &nbsp; -->
-      <%= @user.emoji %>
+        <div id="show-avatar-profile" style="background-color: <%= @user.background_color %> ">
+          <!-- &nbsp; -->
+          <%= @user.emoji %>
+        </div>
+
+      <div class="nav-item dropdown">
+        <div>
+          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="nav-item dropdown">
-    <div>
-      <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-    </div>
-  </div>
-
 </div>
