@@ -1,6 +1,6 @@
 
 <div class="container">
-  <h1>Add a new post</h1>
+  <div class="screw-headline">Add a new post</div>
   <%= simple_form_for @post do |f| %>
     <%= f.input :content, label: "Write a new post" %>
     <%= f.association :category, label: "Select a category", collection: Category.all %>
