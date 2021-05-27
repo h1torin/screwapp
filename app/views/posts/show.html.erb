@@ -1,18 +1,36 @@
-<!doctype html>
-<html lang="en">
-<head>
-</head>
-<body>
 <div class="container mt-5">
-  <div class="screw-post p-4">
-          <div class="avatar-container">
-            <% unless @post.hide_user? %>
-              <div id="show-avatar-profile" style="background-color: <%= @post.user.background_color %> ">
-                <%= @post.user.emoji %>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="screw-post p-4">
+              <div class="avatar-container">
+                <% unless @post.hide_user? %>
+                  <div id="show-avatar-profile" style="background-color: <%= @post.user.background_color %> ">
+                    <%= @post.user.emoji %>
+                  </div>
+                  <div class='screw-nickname' ><%= @post.user.nickname %></div>
+                <% end %>
               </div>
-              <div class='screw-nickname' ><%= @post.user.nickname %></div>
-            <% end %>
+              <% unless @post.hide_content? %>
+               <p><%= render_with_hashtags(@post.content) %></p>
+              <% end %>
+              <% if @post.photo.attached? %>
+                <img src="<%= (url_for(@post.photo)) %>" style="width: auto; height: 200px;">
+              <% end %>
+          <div class="post-reactions">
+          <% user_reaction = @post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+              <% if user_reaction.present? %>
+              <%= link_to "Unlike (#{@post.reactions.count})", post_reaction_path(@post, user_reaction),
+                method: :delete %>
+                <% else %>
+                <%= link_to "Like (#{@post.reactions.count})", post_reactions_path(@post),
+                  method: :@post %>
+              <% end %>
+              <%= link_to post_path(@post) do %>
+                <span title="Comment"><i class="bi bi-chat-right"></i></span>
+              <%= @post.comments.count %>
+              <% end %>
           </div>
+        </div>
           <% unless @post.hide_content? %>
            <p><%= render_with_hashtags(@post.content) %></p>
           <% end %>
@@ -34,18 +52,24 @@
           <% end %>
       </div>
     </div>
+  </div>
 
-<div class="my-4 p-4 screw-post">
-  <div>
-    <div class="screw-headline">Comments</div>
-    <%= render 'comments/new', post: @post %>
+<div class="row d-flex justify-content-center">
+  <div class="col-md-6">
+    <div class="my-4 p-4 screw-post">
+      <div>
+        <div class="screw-headline">Comments</div>
+        <%= render 'comments/new', post: @post %>
+      </div>
+    </div>
+      <% @post.comments.each do |comment| %>
+        <div class='d-flex justify-content-end mt-2'>
+          <div class="screw-comments p-4 screw-post">
+            <%= comment.content %>
+          </div>
+        </div>
+      <% end %>
   </div>
 </div>
-<div class='d-flex justify-content-end'>
-<div class="screw-comments p-4 screw-post">
-<%= render 'comments/index' %>
 </div>
-</div>
-</div>
-</body>
-</html>
+
