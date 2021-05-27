@@ -38,7 +38,7 @@
               <p><%= render_with_hashtags(post.content) %></p>
             <% end %>
             <% if post.photo.attached? %>
-              <img src="<%= (url_for(post.photo)) %>" style="width: 250px; height: 200px;">
+              <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
             <% end %>
 
             <div class="post-reactions">
@@ -62,7 +62,7 @@
     </div>
 
     <% end %>
-  </div>but 
+  </div>but
 
 </div>
 
