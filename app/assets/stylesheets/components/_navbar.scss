@@ -1,12 +1,12 @@
 .navbar-lewagon {
   position: fixed;
   padding: 0;
-  justify-content: space-between;
   background: $light-yellow;
   // opacity: .5;
   height: 6rem;
   width: 100%;
   bottom: 0;
+  justify-content: space-around;
 }
 
 .navbar-lewagon .navbar-collapse {
