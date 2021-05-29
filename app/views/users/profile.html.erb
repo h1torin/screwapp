@@ -9,7 +9,6 @@
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-md-6">
@@ -40,6 +39,13 @@
       </div>
     </div>
   </div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+          <div class="d-flex justify-content-between mt-5">
+            <%= link_to "Edit", edit_user_registration_path, class: "btn-primary btn-rounded-blue" %>
+            <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn-primary btn-rounded-blue" %>
+        </div>
+      </div>
 </div>
 <br>
 <br>
