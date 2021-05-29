@@ -1,13 +1,42 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="col-md-6 mt-5">
-      <p>Hi,<%= @user.nickname %></p>
-
+    <div class="col-md-6 mt-4 mb-4">
         <div id="show-avatar-profile" style="background-color: <%= @user.background_color %> ">
-          <!-- &nbsp; -->
           <%= @user.emoji %>
         </div>
-
+      <h1>Hi <%= @user.nickname %>! </h1>
+      <h4>So here you can see a quick overview of your screwups! Not bad, as of now you have <span style="color: #0800d8; font-size: 2rem;"><%= @posts.count %></span> screw-ups!</h4>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <h2>Here are the categories where you screwed up the most</h2>
+      <br>
+        <%= pie_chart Post.joins(:category).where(user_id: @user.id).group(:name).count %>
+      <br>
+      <br>
+      <h1>The dates of your screw-ups</h1>
+      <br>
+        <%= line_chart Post.joins(:category).where(user_id: @user.id).group_by_day(:created_at).count %>
+      <br>
+      <br>
+<br>
+      <div class="clickable">
+        <h4>If you want to peep in your screw-ups and see how you can screw-up differently, click on one of these: </h4>
+        <% categories = [] %>
+        <% @posts.each do |post| %>
+          <% categories << post.category.name %>
+        <% end %>
+       <%  categories.uniq.each do |category| %>
+       <h4><%= link_to category %></h4>
+       <% end %>
+      </div>
+      <div class="profile-logout mt-5">
+        <h4>To end your session, click here:</h4>
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn-primary btn-rounded-blue" %>
+      </div>
     </div>
   </div>
       <div class="row d-flex justify-content-center">
@@ -18,3 +47,10 @@
         </div>
       </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
