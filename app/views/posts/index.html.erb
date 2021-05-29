@@ -8,12 +8,12 @@
 
   <div class="column">
     <% @posts.each do |post| %>
-    <div class="row d-flex justify-content-center">
+    <div id="post-<%=post.id%>"   class="row d-flex justify-content-center post-parent">
       <div class="col-md-6">
         <div class="i-post-card">
           <div class="i-user-info">
             <% unless post.hide_user? %>
-            <div class="d-flex justify-content-left">
+            <div class="d-flex justify-content-left align-items-center">
               <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
                 <%= post.user.emoji %>
               </div>
@@ -36,7 +36,7 @@
               <p><%= render_with_hashtags(post.content) %></p>
             <% end %>
             <% if post.photo.attached? %>
-              <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
+              <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
             <% end %>
 
             <div class="post-reactions">
@@ -44,10 +44,10 @@
               <div class="mr-3">
               <% if user_reaction.present? %>
               <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                method: :delete %>
+                method: :delete, remote: true %>
                 <% else %>
                 <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                  method: :post %>
+                  method: :post, remote: true %>
               <% end %>
               </div>
               <div class="mr-3">
