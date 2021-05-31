@@ -4,8 +4,9 @@
 <div class="container col-6">
   <div class="row">
 
-      <p>Do you need some support today?</p>
-      <p>We are here for you!</p>
+      <h3>Do you need some support today?</h3>
+      <h3>We are here for you!</h3>
+      <br>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
@@ -23,18 +24,15 @@
             <%= f.button :submit, "Log in", class: "btn-primary btn-rounded-blue" %>
           </div>
           <% end %>
-            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-              <%= link_to "Sign up", new_registration_path(resource_name), class: "btn-info btn-rounded-white" %><br />
-            <% end %>
         </div>
-
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
           <%= link_to "I forgot my password.", new_password_path(resource_name) %><br />
         <% end %>
-
         <p>Not a user yet?</p>
           <div>
+            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <%= link_to "Sign up", new_registration_path(resource_name), class: "btn-info btn-rounded-white" %><br />
+            <% end %>
           </div>
-
   </div>
 </div>
