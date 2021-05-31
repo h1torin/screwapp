@@ -1,9 +1,14 @@
 .header {
-  background: white;
+  background: $light-yellow;
   height: 3.5rem;
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+.header-icon {
+  color: $dark-blue;
+  height: 35px;
 }
 
 // .header-lewagon .header-collapse {
