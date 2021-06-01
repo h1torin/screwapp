@@ -7,5 +7,18 @@ $dark-blue: #0800d8;
 $orange: #ffaa00;
 $light-yellow: #fffaed;
 $white: #ffffff;
+$light-gray: #687684;
 
 $gray: #0e0000;
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.text-light-gray {
+  color: $light-gray;
+}

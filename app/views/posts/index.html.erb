@@ -1,10 +1,10 @@
 <div class="container mb-5">
 
-  <div class="row d-flex justify-content-center">
+  <%# <div class="row d-flex justify-content-center">
     <div class="screwfeed">
       <div class="screw-headline">Hottest screws</div>
     </div>
-  </div>
+  </div> %>
 
   <div class="column">
     <% @posts.each do |post| %>
@@ -38,24 +38,32 @@
               <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
             <% end %>
 
-            <div class="post-reactions">
-              <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-              <div class="mr-3">
+          <div class="post-reactions">
+          <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
               <% if user_reaction.present? %>
-              <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                method: :delete, remote: true %>
-                <% else %>
-                <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                  method: :post, remote: true %>
-              <% end %>
-              </div>
-              <div class="mr-3">
-                <%= link_to post_path(post) do %>
-                  <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                <%= post.comments.count %>
+
+                <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                <span class="text-light-gray"><%= post.reactions.count %></span>
                 <% end %>
-              </div>
-            </div>
+
+                <% else %>
+                <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                <span class="text-light-gray"> <%= post.reactions.count %></span>
+                <% end %>
+              <% end %>
+              <%= link_to post_path(post, origin: "index") do %>
+                <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+              <span class="text-light-gray"><%= post.comments.count %></span>
+              <% end %>
+          </div>
+
+
+
+
+
+
         </div>
       </div>
     </div>
