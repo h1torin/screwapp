@@ -21,20 +21,20 @@
           <% user_reaction = @post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
               <% if user_reaction.present? %>
 
-                <%= link_to post_reaction_path(@post, user_reaction), method: :delete do %>
-                <span title="Unlike"><i class="bi bi-heart-fill"></i></span>
-                <%= @post.reactions.count %>
+                <%= link_to post_reaction_path(@post, user_reaction, origin: "show"), method: :delete do %>
+                <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                <span class="text-light-gray"><%= @post.reactions.count %></span>
                 <% end %>
 
                 <% else %>
-                <%= link_to post_reactions_path(@post), method: :post do %>
-                <span title="Like"><i class="bi bi-heart"></i></span>
-                 <%= @post.reactions.count %>
+                <%= link_to post_reactions_path(@post, origin: "show"), method: :post do %>
+                <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                <span class="text-light-gray"> <%= @post.reactions.count %></span>
                 <% end %>
               <% end %>
-              <%= link_to post_path(@post) do %>
-                <span title="Comment"><i class="bi bi-chat pl-3"></i></span>
-              <%= @post.comments.count %>
+              <%= link_to post_path(@post, origin: "show") do %>
+                <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+              <span class="text-light-gray"><%= @post.comments.count %></span>
               <% end %>
           </div>
         </div>
