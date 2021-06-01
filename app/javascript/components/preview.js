@@ -42,39 +42,39 @@ export default preview
 
 
 
-const element1 = document.getElementById("Work and Study");
-element1.style.display = "none";
+// const element1 = document.getElementById("Work and Study");
+// element1.style.display = "none";
 
-const element2 = document.getElementById("Finance");
-element2.style.display = "none";
+// const element2 = document.getElementById("Finance");
+// element2.style.display = "none";
 
-const element3 = document.getElementById("Household");
-element3.style.display = "none";
+// const element3 = document.getElementById("Household");
+// element3.style.display = "none";
 
-const element4 = document.getElementById("Relationship");
-element4.style.display = "none";
+// const element4 = document.getElementById("Relationship");
+// element4.style.display = "none";
 
-const element5 = document.getElementById("Family");
-element5.style.display = "none";
+// const element5 = document.getElementById("Family");
+// element5.style.display = "none";
 
-const element6 = document.getElementById("Friends");
-element6.style.display = "none";
+// const element6 = document.getElementById("Friends");
+// element6.style.display = "none";
 
-const element7 = document.getElementById("Health");
-element7.style.display = "none";
+// const element7 = document.getElementById("Health");
+// element7.style.display = "none";
 
-const element8 = document.getElementById("Hobby and Leisure");
-element8.style.display = "none";
+// const element8 = document.getElementById("Hobby and Leisure");
+// element8.style.display = "none";
 
-const element9 = document.getElementById("Other Screw-ups");
-element9.style.display = "none";
+// const element9 = document.getElementById("Other Screw-ups");
+// element9.style.display = "none";
 
 
-// const categories = document.getElementById("categories");
+// const categories = document.querySelectorAll(".categories");
 // console.log(categories);
-//   categories.forEach((category) => {
-//     console.log(element);
-//   });
+  // categories.forEach((category) => {
+  //   console.log(element);
+  // });
 
 // {
 //   if (input == "Work and Study") {
