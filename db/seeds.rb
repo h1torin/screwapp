@@ -29,11 +29,11 @@ ninth_category = Category.create(name:  "Other Screw-ups")
 post = Post.create(user: user_6, content: "I'm under the covers and i want to wrap in a ball and die. I was having another meet with my friends and I joined with my username ostrich with a dick . This was 30 minutes before our school call. When I clicked on the school link, I didn't notice that i was signed in from ostrich with a dick instead of my real name.
 
     So I sent a request. The teacher ( obviously) denied it. And I acted like a fucking idiot and sent the request 5 more times , wondering why I was getting denied every time. My friends texted me saying that I sent a request with the wrong ID. And now apparently, I'm the ostrich dude.
-    
+
     So yeah, I'm not gonna forget this for a really long time. a really really long time because I did this in *drumroll....highschool. Sighs. They won't let me forget this
-    
-    
-    
+
+
+
     TL;DR : Got dicked by a ostrich in google meet.", category: first_category)
 post = Post.create(user: user_7, content: "I fuck up most days when alcohol is involved, but last week I dropped a full bottle of red wine on my white floor which is unpolished. Yes, that means the floor gets stained. I moved into this house recently, it's really cute looking house, and out of excitement, I moved in without noticing the problem with the flooring. As a result, whenever I drop something, the floor gets stained. In the first week itself, I dropped lemon tea followed by pickle, which left big big stains. Now last week I dropped wine bottle and yes it was all I had. All booze shops were closed here and we were getting it in black.", category: second_category)
 post = Post.create(user: user_8, content: "Tifu by peeing in someone's driveway in the middle of the night, getting caught and partially wetting myself.", category: third_category)
