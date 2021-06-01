@@ -30,7 +30,7 @@
           <% categories << post.category.name %>
         <% end %>
        <%  categories.uniq.each do |category| %>
-       <h4><%= link_to category %></h4>
+       <h4 id="categories"><%= category %></h4>
        <% end %>
       </div>
 
@@ -50,7 +50,7 @@
 
 <div class="column">
     <% @posts.each do |post| %>
-      <% if post.category.name == "Work and Study" %>
+      <div id="Work and Study"><% if post.category.name == "Work and Study" %>
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="i-post-card">
@@ -102,8 +102,9 @@
             </div>
           </div>
         </div>
+      </div>
         <%#= render 'shared/posts' %>
-      <% elsif post.category.name == "Finance" %>
+      <div id="Finance"><% elsif post.category.name == "Finance" %>
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="i-post-card">
@@ -155,8 +156,9 @@
             </div>
           </div>
         </div>
+      </div>
         <%#= render 'shared/posts' %>
-      <% elsif post.category.name == "Household" %>
+      <div id="Household"><% elsif post.category.name == "Household" %>
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="i-post-card">
@@ -208,8 +210,9 @@
             </div>
           </div>
         </div>
+      </div>
         <%#= render 'shared/posts' %>
-      <% elsif post.category.name == "Relationship" %>
+      <div id="Relationship"><% elsif post.category.name == "Relationship" %>
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="i-post-card">
@@ -261,8 +264,9 @@
             </div>
           </div>
         </div>
+      </div>
         <%#= render 'shared/posts' %>
-      <% elsif post.category.name == "Family" %>
+      <div id="Family"><% elsif post.category.name == "Family" %>
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="i-post-card">
@@ -314,8 +318,9 @@
             </div>
           </div>
         </div>
+      </div>
         <%#= render 'shared/posts' %>
-      <% elsif post.category.name == "Friends" %>
+      <div id="Friends"><% elsif post.category.name == "Friends" %>
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="i-post-card">
@@ -367,8 +372,9 @@
             </div>
           </div>
         </div>
+      </div>
         <%#= render 'shared/posts' %>
-      <% elsif post.category.name == "Health" %>
+      <div id="Health"><% elsif post.category.name == "Health" %>
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="i-post-card">
@@ -420,8 +426,9 @@
             </div>
           </div>
         </div>
+      </div>
         <%#= render 'shared/posts' %>
-      <% elsif post.category.name == "Hobby and Leisure" %>
+      <div id="Hobby and Leisure"><% elsif post.category.name == "Hobby and Leisure" %>
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="i-post-card">
@@ -473,8 +480,9 @@
             </div>
           </div>
         </div>
+      </div>
         <%#= render 'shared/posts' %>
-      <% else post.category.name == "Other Screw-ups" %>
+      <div id="Other Screw-ups"><% else post.category.name == "Other Screw-ups" %>
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <div class="i-post-card">
@@ -526,6 +534,7 @@
             </div>
           </div>
         </div>
+      </div>
         <%#= render 'shared/posts' %>
       <% end %>
     <% end %>
