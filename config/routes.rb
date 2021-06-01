@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
   devise_for :users
   root to: 'pages#home'
+
 
   get 'profile', to: 'users#profile', as: 'profile'
   get '/posts/hashtag/:name', to: 'posts#hashtags', as: 'hashtag'
@@ -14,5 +16,12 @@ Rails.application.routes.draw do
     # resources :reactions, only: [ :create, :show ]
 
   resources :comments, only: :destroy
+
+  # root to: 'notifications#index'
+  get 'notifications', to: 'notifications#index', as: 'notifications'
+    resources :messages, :comments
+
+    # Websockets resemble this URL
+    # mount ActionCable.server => '/cable'
 
 end
