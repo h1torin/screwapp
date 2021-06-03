@@ -1,9 +1,9 @@
 class Message < ApplicationRecord
-  after_create_commit { notify }
+  # after_create_commit { notify }
 
-  private
+  # private
 
-  def notify
-    Notification.create(event: "New Notification")
-  end
+  # def notify
+  #   Notification.create(event: "New Notification")
+  # end
 end

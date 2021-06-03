@@ -1,4 +1,6 @@
-<li>
-  <%= notification.event %>
-  <span> <%= notification.created_at.strftime("%d %b. %Y") %></span>
-</li>
+  <% if notification.user != current_user %>
+    <li>
+      <%= notification.event %>
+      <span> <%= notification.created_at.strftime("%d %b. %Y") %></span>
+    </li>
+  <% end %>
