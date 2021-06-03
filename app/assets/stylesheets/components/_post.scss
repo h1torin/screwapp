@@ -123,3 +123,38 @@ html {
 .margin-comments {
   margin-bottom: 130px;
 }
+
+.three-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.three-dots {
+  background: url("3-dots.svg");
+  height: 20px;
+  width: 45px;
+  display: block;
+  margin-top: 12px;
+  margin-right: 10px;
+  /* Other styles here */
+}
+
+.show-all {
+  font-family: "Nanum Pen Script";
+  font-size: 18px;
+  color: #0800d8;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #0800d8;
+  text-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
+  margin-bottom: 30px;
+}
+
+.hashtag {
+  color: $light-blue !important;
+}
+
+.post-new {
+  color: $gray;
+}
