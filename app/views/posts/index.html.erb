@@ -58,17 +58,31 @@
               <span class="text-light-gray"><%= post.comments.count %></span>
               <% end %>
           </div>
-
-
-
-
-
-
         </div>
       </div>
     </div>
     <% end %>
 </div>
+
+<div class="container">
+  <h2>Trending hashtags</h2>
+  <% tags = [] %>
+  <% @sorted_tags = [] %>
+  <% @tags.each do |tag| %>
+  <li><%= tag.name %></li>
+  <%= tags << tag.name %>
+  <br>
+  <br>
+  <%= @sorted_tags = tags.sort_by {|e| -e[/\d+/].to_i } %>
+  <% end %>
+  <br>
+  <br>
+  checking if it s working
+  <%= sorted = @sorted_tags.flatten %>
+
+  <%#= sorted.join %>
+</div>
+
 <br>
 <br>
 <br>
@@ -79,6 +93,7 @@
 <%# end %>
 
 <%#= bar_chart Category.group(:name) %>
+
 
 <br>
 <br>

@@ -4,6 +4,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = policy_scope(Post).order(created_at: :desc)
+    # @tags = Tag.group(:name).count.order('desc')
+    # raise
+    @tags = Tag.all
   end
 
   def show
@@ -59,7 +62,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :category_id, :hide_user, :hide_content, :id_user, :photo)
+    params.require(:post).permit(:content, :category_id, :hide_user, :hide_content, :id_user, :photo, :tag_ids, :tag)
   end
 
   def require_same_user
