@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
   # has_many :replies, class_name: 'Comment', foreign_key: :parent_id, dependent: :destroy
   validates :content, presence: true
   # if self.user != post.user
-    after_create_commit { notify }
+    # after_create_commit { notify }
   # end
 
   private

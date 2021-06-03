@@ -11,7 +11,7 @@
                     <% end %>
 
                   <div class="header-icon notification-counter">
-                    <% notifications = policy_scope(Notification).all.reverse %>
+                    <% notifications = Notification.where.not(user: current_user).reverse %>
                     <%= link_to notifications_path, id: "open_notification", class: "nav-link" do %>
                       <%= render 'notifications/counter', counter: notifications.count %>
                     <% end %>
