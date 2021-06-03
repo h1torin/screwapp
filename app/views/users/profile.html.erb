@@ -4,531 +4,522 @@
         <div id="show-avatar-profile" style="background-color: <%= @user.background_color %> ">
           <%= @user.emoji %>
         </div>
-      <h1>Hi <%= @user.nickname %>! </h1>
+      <h1 class="screw-headline">Hi <%= @user.nickname %>! </h1>
       <h4>So here you can see a quick overview of your screwups! Not bad, as of now you have <span style="color: #0800d8; font-size: 2rem;"><%= @posts.count %></span> screw-ups!</h4>
     </div>
   </div>
-</div>
-<div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-md-6">
-      <h2>Here are the categories where you screwed up the most</h2>
+      <h2 class="screw-headline">Here are the categories where you screwed up the most</h2>
       <br>
         <%= pie_chart Post.joins(:category).where(user_id: @user.id).group(:name).count %>
       <br>
       <br>
-      <h1>The dates of your screw-ups</h1>
+      <h2 class="screw-headline">The dates of your screw-ups</h2>
       <br>
         <%= line_chart Post.joins(:category).where(user_id: @user.id).group_by_day(:created_at).count %>
       <br>
       <br>
-<br>
-
+      <br>
     </div>
   </div>
 
-<%# categories = [] %>
-<%# @posts.each do |post| %>
-  <%# categories << post.category.name %>
-<%# end %>
-
-  <div class="column">
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-6">
-          <h4>If you want to peep in your screw-ups and see how you can screw-up differently, click on one of these: </h4>
-        </div>
-    </div>
-        <% @posts.each do |post| %>
-          <h4><% if post.category.name == "Work and Study" %>Work and Study</h4>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-6">
-                <div class="i-post-card">
-                  <div class="i-user-info">
-                    <% unless post.hide_user? %>
-                    <div class="d-flex justify-content-left">
-                      <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                        <%= post.user.emoji %>
-                      </div>
-                        <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-                    </div>
-                    <% end %>
-                      <div>
-                        <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
-                            <%= link_to "Remove", post_path(post), class: "dropdown-item",
-                                method: :delete,
-                                data: { confirm: "Are you sure?"} %>
-                        </div>
-                      </div>
-                    </div>
-
-                    <% unless post.hide_content? %>
-                      <p><%= render_with_hashtags(post.content) %></p>
-                    <% end %>
-                    <% if post.photo.attached? %>
-                      <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
-                    <% end %>
-
-                    <div class="post-reactions">
-                      <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-                      <div class="mr-3">
-                      <% if user_reaction.present? %>
-                      <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                        method: :delete %>
-                        <% else %>
-                        <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                          method: :post %>
-                      <% end %>
-                      </div>
-                      <div class="mr-3">
-                        <%= link_to post_path(post) do %>
-                          <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                        <%= post.comments.count %>
-                        <% end %>
-                      </div>
-                    </div>
-                </div>
-              </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="clickables">
+        <h2 class="screw-headline">Categories of your Screw-ups</h2>
+        <h4>If you want to peep in your screw-ups and see how you can screw-up differently, click on one of these: </h4>
+          <% categories = [] %>
+          <% @posts.each do |post| %>
+            <% categories << post.category.name %>
+          <% end %>
+         <%  categories.uniq.each do |category| %>
+           <% if category == "Work and Study" %>
+            <div data-toggle="collapse" data-target="#collapseExampleOne" aria-expanded="false" aria-controls="collapseExampleOne">
+              <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-          <h4> <% elsif post.category.name == "Finance" %>Finance</h4>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-6">
-                <div class="i-post-card">
-                  <div class="i-user-info">
-                    <% unless post.hide_user? %>
-                    <div class="d-flex justify-content-left">
-                      <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                        <%= post.user.emoji %>
-                      </div>
-                        <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-                    </div>
-                    <% end %>
-                      <div>
-                        <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
-                            <%= link_to "Remove", post_path(post), class: "dropdown-item",
-                                method: :delete,
-                                data: { confirm: "Are you sure?"} %>
-                        </div>
-                      </div>
-                    </div>
-
-                    <% unless post.hide_content? %>
-                      <p><%= render_with_hashtags(post.content) %></p>
-                    <% end %>
-                    <% if post.photo.attached? %>
-                      <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
-                    <% end %>
-
-                    <div class="post-reactions">
-                      <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-                      <div class="mr-3">
-                      <% if user_reaction.present? %>
-                      <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                        method: :delete %>
-                        <% else %>
-                        <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                          method: :post %>
-                      <% end %>
-                      </div>
-                      <div class="mr-3">
-                        <%= link_to post_path(post) do %>
-                          <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                        <%= post.comments.count %>
-                        <% end %>
-                      </div>
-                    </div>
-                </div>
-              </div>
+           <% elsif category == "Finance" %>
+            <div data-toggle="collapse" data-target="#collapseExampleTwo" aria-expanded="false" aria-controls="collapseExampleTwo">
+              <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-          <h4><% elsif post.category.name == "Household" %>Household</h4>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-6">
-                <div class="i-post-card">
-                  <div class="i-user-info">
-                    <% unless post.hide_user? %>
-                    <div class="d-flex justify-content-left">
-                      <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                        <%= post.user.emoji %>
-                      </div>
-                        <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-                    </div>
-                    <% end %>
-                      <div>
-                        <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
-                            <%= link_to "Remove", post_path(post), class: "dropdown-item",
-                                method: :delete,
-                                data: { confirm: "Are you sure?"} %>
-                        </div>
-                      </div>
-                    </div>
-
-                    <% unless post.hide_content? %>
-                      <p><%= render_with_hashtags(post.content) %></p>
-                    <% end %>
-                    <% if post.photo.attached? %>
-                      <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
-                    <% end %>
-
-                    <div class="post-reactions">
-                      <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-                      <div class="mr-3">
-                      <% if user_reaction.present? %>
-                      <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                        method: :delete %>
-                        <% else %>
-                        <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                          method: :post %>
-                      <% end %>
-                      </div>
-                      <div class="mr-3">
-                        <%= link_to post_path(post) do %>
-                          <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                        <%= post.comments.count %>
-                        <% end %>
-                      </div>
-                    </div>
-                </div>
-              </div>
+            <% elsif category == "Household" %>
+            <div data-toggle="collapse" data-target="#collapseExampleThree" aria-expanded="false" aria-controls="collapseExampleThree">
+              <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-          <h4><% elsif post.category.name == "Relationship" %>Relationship</h4>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-6">
-                <div class="i-post-card">
-                  <div class="i-user-info">
-                    <% unless post.hide_user? %>
-                    <div class="d-flex justify-content-left">
-                      <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                        <%= post.user.emoji %>
-                      </div>
-                        <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-                    </div>
-                    <% end %>
-                      <div>
-                        <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
-                            <%= link_to "Remove", post_path(post), class: "dropdown-item",
-                                method: :delete,
-                                data: { confirm: "Are you sure?"} %>
-                        </div>
-                      </div>
-                    </div>
-
-                    <% unless post.hide_content? %>
-                      <p><%= render_with_hashtags(post.content) %></p>
-                    <% end %>
-                    <% if post.photo.attached? %>
-                      <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
-                    <% end %>
-
-                    <div class="post-reactions">
-                      <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-                      <div class="mr-3">
-                      <% if user_reaction.present? %>
-                      <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                        method: :delete %>
-                        <% else %>
-                        <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                          method: :post %>
-                      <% end %>
-                      </div>
-                      <div class="mr-3">
-                        <%= link_to post_path(post) do %>
-                          <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                        <%= post.comments.count %>
-                        <% end %>
-                      </div>
-                    </div>
-                </div>
-              </div>
+            <% elsif category == "Relationship" %>
+            <div data-toggle="collapse" data-target="#collapseExampleFour" aria-expanded="false" aria-controls="collapseExampleFour">
+              <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-          <h4><% elsif post.category.name == "Family" %>Family</h4>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-6">
-                <div class="i-post-card">
-                  <div class="i-user-info">
-                    <% unless post.hide_user? %>
-                    <div class="d-flex justify-content-left">
-                      <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                        <%= post.user.emoji %>
-                      </div>
-                        <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-                    </div>
-                    <% end %>
-                      <div>
-                        <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
-                            <%= link_to "Remove", post_path(post), class: "dropdown-item",
-                                method: :delete,
-                                data: { confirm: "Are you sure?"} %>
-                        </div>
-                      </div>
-                    </div>
-
-                    <% unless post.hide_content? %>
-                      <p><%= render_with_hashtags(post.content) %></p>
-                    <% end %>
-                    <% if post.photo.attached? %>
-                      <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
-                    <% end %>
-
-                    <div class="post-reactions">
-                      <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-                      <div class="mr-3">
-                      <% if user_reaction.present? %>
-                      <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                        method: :delete %>
-                        <% else %>
-                        <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                          method: :post %>
-                      <% end %>
-                      </div>
-                      <div class="mr-3">
-                        <%= link_to post_path(post) do %>
-                          <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                        <%= post.comments.count %>
-                        <% end %>
-                      </div>
-                    </div>
-                </div>
-              </div>
+            <% elsif category == "Family" %>
+            <div data-toggle="collapse" data-target="#collapseExampleFive" aria-expanded="false" aria-controls="collapseExampleFive">
+              <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-          <h4><% elsif post.category.name == "Friends" %>Friends</h4>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-6">
-                <div class="i-post-card">
-                  <div class="i-user-info">
-                    <% unless post.hide_user? %>
-                    <div class="d-flex justify-content-left">
-                      <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                        <%= post.user.emoji %>
-                      </div>
-                        <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-                    </div>
-                    <% end %>
-                      <div>
-                        <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
-                            <%= link_to "Remove", post_path(post), class: "dropdown-item",
-                                method: :delete,
-                                data: { confirm: "Are you sure?"} %>
-                        </div>
-                      </div>
-                    </div>
-
-                    <% unless post.hide_content? %>
-                      <p><%= render_with_hashtags(post.content) %></p>
-                    <% end %>
-                    <% if post.photo.attached? %>
-                      <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
-                    <% end %>
-
-                    <div class="post-reactions">
-                      <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-                      <div class="mr-3">
-                      <% if user_reaction.present? %>
-                      <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                        method: :delete %>
-                        <% else %>
-                        <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                          method: :post %>
-                      <% end %>
-                      </div>
-                      <div class="mr-3">
-                        <%= link_to post_path(post) do %>
-                          <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                        <%= post.comments.count %>
-                        <% end %>
-                      </div>
-                    </div>
-                </div>
-              </div>
+            <% elsif category == "Friends" %>
+            <div data-toggle="collapse" data-target="#collapseExampleSix" aria-expanded="false" aria-controls="collapseExampleSix">
+              <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-          <h4><% elsif post.category.name == "Health" %>Health</h4>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-6">
-                <div class="i-post-card">
-                  <div class="i-user-info">
-                    <% unless post.hide_user? %>
-                    <div class="d-flex justify-content-left">
-                      <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                        <%= post.user.emoji %>
-                      </div>
-                        <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-                    </div>
-                    <% end %>
-                      <div>
-                        <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
-                            <%= link_to "Remove", post_path(post), class: "dropdown-item",
-                                method: :delete,
-                                data: { confirm: "Are you sure?"} %>
-                        </div>
-                      </div>
-                    </div>
-
-                    <% unless post.hide_content? %>
-                      <p><%= render_with_hashtags(post.content) %></p>
-                    <% end %>
-                    <% if post.photo.attached? %>
-                      <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
-                    <% end %>
-
-                    <div class="post-reactions">
-                      <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-                      <div class="mr-3">
-                      <% if user_reaction.present? %>
-                      <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                        method: :delete %>
-                        <% else %>
-                        <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                          method: :post %>
-                      <% end %>
-                      </div>
-                      <div class="mr-3">
-                        <%= link_to post_path(post) do %>
-                          <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                        <%= post.comments.count %>
-                        <% end %>
-                      </div>
-                    </div>
-                </div>
-              </div>
+            <% elsif category == "Health" %>
+            <div data-toggle="collapse" data-target="#collapseExampleSeven" aria-expanded="false" aria-controls="collapseExampleSeven">
+              <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-          <h4><% elsif post.category.name == "Hobby and Leisure" %>Hobby and Leisure</h4>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-6">
-                <div class="i-post-card">
-                  <div class="i-user-info">
-                    <% unless post.hide_user? %>
-                    <div class="d-flex justify-content-left">
-                      <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                        <%= post.user.emoji %>
-                      </div>
-                        <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-                    </div>
-                    <% end %>
-                      <div>
-                        <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
-                            <%= link_to "Remove", post_path(post), class: "dropdown-item",
-                                method: :delete,
-                                data: { confirm: "Are you sure?"} %>
-                        </div>
-                      </div>
-                    </div>
-
-                    <% unless post.hide_content? %>
-                      <p><%= render_with_hashtags(post.content) %></p>
-                    <% end %>
-                    <% if post.photo.attached? %>
-                      <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
-                    <% end %>
-
-                    <div class="post-reactions">
-                      <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-                      <div class="mr-3">
-                      <% if user_reaction.present? %>
-                      <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                        method: :delete %>
-                        <% else %>
-                        <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                          method: :post %>
-                      <% end %>
-                      </div>
-                      <div class="mr-3">
-                        <%= link_to post_path(post) do %>
-                          <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                        <%= post.comments.count %>
-                        <% end %>
-                      </div>
-                    </div>
-                </div>
-              </div>
+            <% elsif category == "Hobby and Leisure" %>
+            <div data-toggle="collapse" data-target="#collapseExampleEight" aria-expanded="false" aria-controls="collapseExampleEight">
+              <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-          <h4><% else post.category.name == "Other Screw-ups" %>Other Screw-ups</h4>
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-6">
-                <div class="i-post-card">
-                  <div class="i-user-info">
-                    <% unless post.hide_user? %>
-                    <div class="d-flex justify-content-left">
-                      <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                        <%= post.user.emoji %>
-                      </div>
-                        <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
-                    </div>
-                    <% end %>
-                      <div>
-                        <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
-                            <%= link_to "Remove", post_path(post), class: "dropdown-item",
-                                method: :delete,
-                                data: { confirm: "Are you sure?"} %>
-                        </div>
-                      </div>
-                    </div>
-
-                    <% unless post.hide_content? %>
-                      <p><%= render_with_hashtags(post.content) %></p>
-                    <% end %>
-                    <% if post.photo.attached? %>
-                      <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
-                    <% end %>
-
-                    <div class="post-reactions">
-                      <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
-                      <div class="mr-3">
-                      <% if user_reaction.present? %>
-                      <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                        method: :delete %>
-                        <% else %>
-                        <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                          method: :post %>
-                      <% end %>
-                      </div>
-                      <div class="mr-3">
-                        <%= link_to post_path(post) do %>
-                          <span title="Comment"><i class="bi bi-chat-right"></i></span>
-                        <%= post.comments.count %>
-                        <% end %>
-                      </div>
-                    </div>
-                </div>
-              </div>
+            <% elsif category == "Other Screw-ups" %>
+            <div data-toggle="collapse" data-target="#collapseExampleNine" aria-expanded="false" aria-controls="collapseExampleNine">
+              <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-              <% end %>
-        <% end %>
+           <% else %>
 
-    <div class="row d-flex justify-content-center">
-      <div class="col-md-6">
-          <div class="profile-logout mt-5">
-            <h4>To end your session, click here:</h4>
-            <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn-primary btn-rounded-blue" %>
-          </div>
-
+           <% end %>
+         <% end %>
       </div>
     </div>
   </div>
 
-<!--       <div class="row d-flex justify-content-center">
-        <div class="col-md-6">
-          <div class="d-flex justify-content-between mt-5">
-            <%#= link_to "Edit", edit_user_registration_path, class: "btn-primary btn-rounded-blue" %>
-            <%#= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn-primary btn-rounded-blue" %>
+<br>
+
+  <div class="column">
+    <% @posts.each do |post| %>
+    <div id="post-<%=post.id%>"   class="row d-flex justify-content-center post-parent">
+      <div class="col-md-6">
+        <% if post.category.name == "Work and Study" %>
+          <div class="collapse" id="collapseExampleOne">
+              <div class="i-post-card">
+                <div class="i-user-info">
+                  <div class="d-flex justify-content-left align-items-center">
+                    <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                      <%= post.user.emoji %>
+                    </div>
+                      <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+                  </div>
+                    <div>
+                      <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                          <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                              method: :delete,
+                              data: { confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+
+                    <p><%= render_with_hashtags(post.content) %></p>
+                  <% if post.photo.attached? %>
+                    <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
+                  <% end %>
+
+                <div class="post-reactions">
+                <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+                    <% if user_reaction.present? %>
+                      <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                      <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                      <span class="text-light-gray"><%= post.reactions.count %></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                      <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                      <span class="text-light-gray"> <%= post.reactions.count %></span>
+                      <% end %>
+                    <% end %>
+                    <%= link_to post_path(post, origin: "index") do %>
+                      <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+                    <span class="text-light-gray"><%= post.comments.count %></span>
+                    <% end %>
+                </div>
+              </div>
+          </div>
+        <% elsif post.category.name == "Finance" %>
+          <div class="collapse" id="collapseExampleTwo">
+              <div class="i-post-card">
+                <div class="i-user-info">
+                  <div class="d-flex justify-content-left align-items-center">
+                    <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                      <%= post.user.emoji %>
+                    </div>
+                      <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+                  </div>
+                    <div>
+                      <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                          <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                              method: :delete,
+                              data: { confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+
+                    <p><%= render_with_hashtags(post.content) %></p>
+                  <% if post.photo.attached? %>
+                    <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
+                  <% end %>
+
+                <div class="post-reactions">
+                <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+                    <% if user_reaction.present? %>
+                      <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                      <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                      <span class="text-light-gray"><%= post.reactions.count %></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                      <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                      <span class="text-light-gray"> <%= post.reactions.count %></span>
+                      <% end %>
+                    <% end %>
+                    <%= link_to post_path(post, origin: "index") do %>
+                      <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+                    <span class="text-light-gray"><%= post.comments.count %></span>
+                    <% end %>
+                </div>
+              </div>
+          </div>
+        <% elsif post.category.name == "Household" %>
+          <div class="collapse" id="collapseExampleThree">
+              <div class="i-post-card">
+                <div class="i-user-info">
+                  <div class="d-flex justify-content-left align-items-center">
+                    <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                      <%= post.user.emoji %>
+                    </div>
+                      <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+                  </div>
+                    <div>
+                      <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                          <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                              method: :delete,
+                              data: { confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+
+                    <p><%= render_with_hashtags(post.content) %></p>
+                  <% if post.photo.attached? %>
+                    <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
+                  <% end %>
+
+                <div class="post-reactions">
+                <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+                    <% if user_reaction.present? %>
+                      <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                      <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                      <span class="text-light-gray"><%= post.reactions.count %></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                      <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                      <span class="text-light-gray"> <%= post.reactions.count %></span>
+                      <% end %>
+                    <% end %>
+                    <%= link_to post_path(post, origin: "index") do %>
+                      <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+                    <span class="text-light-gray"><%= post.comments.count %></span>
+                    <% end %>
+                </div>
+              </div>
+          </div>
+        <% elsif post.category.name == "Relationship" %>
+          <div class="collapse" id="collapseExampleFour">
+              <div class="i-post-card">
+                <div class="i-user-info">
+                  <div class="d-flex justify-content-left align-items-center">
+                    <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                      <%= post.user.emoji %>
+                    </div>
+                      <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+                  </div>
+                    <div>
+                      <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                          <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                              method: :delete,
+                              data: { confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+
+                    <p><%= render_with_hashtags(post.content) %></p>
+                  <% if post.photo.attached? %>
+                    <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
+                  <% end %>
+
+                <div class="post-reactions">
+                <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+                    <% if user_reaction.present? %>
+                      <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                      <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                      <span class="text-light-gray"><%= post.reactions.count %></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                      <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                      <span class="text-light-gray"> <%= post.reactions.count %></span>
+                      <% end %>
+                    <% end %>
+                    <%= link_to post_path(post, origin: "index") do %>
+                      <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+                    <span class="text-light-gray"><%= post.comments.count %></span>
+                    <% end %>
+                </div>
+              </div>
+          </div>
+        <% elsif post.category.name == "Family" %>
+          <div class="collapse" id="collapseExampleFive">
+              <div class="i-post-card">
+                <div class="i-user-info">
+                  <div class="d-flex justify-content-left align-items-center">
+                    <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                      <%= post.user.emoji %>
+                    </div>
+                      <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+                  </div>
+                    <div>
+                      <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                          <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                              method: :delete,
+                              data: { confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+
+                    <p><%= render_with_hashtags(post.content) %></p>
+                  <% if post.photo.attached? %>
+                    <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
+                  <% end %>
+
+                <div class="post-reactions">
+                <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+                    <% if user_reaction.present? %>
+                      <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                      <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                      <span class="text-light-gray"><%= post.reactions.count %></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                      <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                      <span class="text-light-gray"> <%= post.reactions.count %></span>
+                      <% end %>
+                    <% end %>
+                    <%= link_to post_path(post, origin: "index") do %>
+                      <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+                    <span class="text-light-gray"><%= post.comments.count %></span>
+                    <% end %>
+                </div>
+              </div>
+          </div>
+        <% elsif post.category.name == "Friends" %>
+          <div class="collapse" id="collapseExampleSix">
+              <div class="i-post-card">
+                <div class="i-user-info">
+                  <div class="d-flex justify-content-left align-items-center">
+                    <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                      <%= post.user.emoji %>
+                    </div>
+                      <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+                  </div>
+                    <div>
+                      <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                          <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                              method: :delete,
+                              data: { confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+
+                    <p><%= render_with_hashtags(post.content) %></p>
+                  <% if post.photo.attached? %>
+                    <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
+                  <% end %>
+
+                <div class="post-reactions">
+                <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+                    <% if user_reaction.present? %>
+                      <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                      <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                      <span class="text-light-gray"><%= post.reactions.count %></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                      <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                      <span class="text-light-gray"> <%= post.reactions.count %></span>
+                      <% end %>
+                    <% end %>
+                    <%= link_to post_path(post, origin: "index") do %>
+                      <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+                    <span class="text-light-gray"><%= post.comments.count %></span>
+                    <% end %>
+                </div>
+              </div>
+          </div>
+        <% elsif post.category.name == "Health" %>
+          <div class="collapse" id="collapseExampleSeven">
+              <div class="i-post-card">
+                <div class="i-user-info">
+                  <div class="d-flex justify-content-left align-items-center">
+                    <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                      <%= post.user.emoji %>
+                    </div>
+                      <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+                  </div>
+                    <div>
+                      <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                          <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                              method: :delete,
+                              data: { confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+
+                    <p><%= render_with_hashtags(post.content) %></p>
+                  <% if post.photo.attached? %>
+                    <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
+                  <% end %>
+
+                <div class="post-reactions">
+                <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+                    <% if user_reaction.present? %>
+                      <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                      <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                      <span class="text-light-gray"><%= post.reactions.count %></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                      <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                      <span class="text-light-gray"> <%= post.reactions.count %></span>
+                      <% end %>
+                    <% end %>
+                    <%= link_to post_path(post, origin: "index") do %>
+                      <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+                    <span class="text-light-gray"><%= post.comments.count %></span>
+                    <% end %>
+                </div>
+              </div>
+          </div>
+        <% elsif post.category.name == "Hobby and Leisure" %>
+          <div class="collapse" id="collapseExampleEight">
+              <div class="i-post-card">
+                <div class="i-user-info">
+                  <div class="d-flex justify-content-left align-items-center">
+                    <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                      <%= post.user.emoji %>
+                    </div>
+                      <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+                  </div>
+                    <div>
+                      <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                          <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                              method: :delete,
+                              data: { confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+
+                    <p><%= render_with_hashtags(post.content) %></p>
+                  <% if post.photo.attached? %>
+                    <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
+                  <% end %>
+
+                <div class="post-reactions">
+                <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+                    <% if user_reaction.present? %>
+                      <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                      <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                      <span class="text-light-gray"><%= post.reactions.count %></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                      <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                      <span class="text-light-gray"> <%= post.reactions.count %></span>
+                      <% end %>
+                    <% end %>
+                    <%= link_to post_path(post, origin: "index") do %>
+                      <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+                    <span class="text-light-gray"><%= post.comments.count %></span>
+                    <% end %>
+                </div>
+              </div>
+          </div>
+        <% elsif post.category.name == "Other Screw-ups" %>
+          <div class="collapse" id="collapseExampleNine">
+              <div class="i-post-card">
+                <div class="i-user-info">
+                  <div class="d-flex justify-content-left align-items-center">
+                    <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                      <%= post.user.emoji %>
+                    </div>
+                      <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+                  </div>
+                    <div>
+                      <i class="bi bi-three-dots dropdown-toggle bi bi-app-indicator" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                          <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                              method: :delete,
+                              data: { confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+
+                    <p><%= render_with_hashtags(post.content) %></p>
+                  <% if post.photo.attached? %>
+                    <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
+                  <% end %>
+
+                <div class="post-reactions">
+                <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+                    <% if user_reaction.present? %>
+                      <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                      <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                      <span class="text-light-gray"><%= post.reactions.count %></span>
+                      <% end %>
+                      <% else %>
+                      <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                      <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                      <span class="text-light-gray"> <%= post.reactions.count %></span>
+                      <% end %>
+                    <% end %>
+                    <%= link_to post_path(post, origin: "index") do %>
+                      <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
+                    <span class="text-light-gray"><%= post.comments.count %></span>
+                    <% end %>
+                </div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+        <div class="profile-logout mt-5">
+          <h4>To end your session, click here:</h4>
+          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn-primary btn-rounded-blue" %>
         </div>
-      </div> -->
+    </div>
+  </div>
 </div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
