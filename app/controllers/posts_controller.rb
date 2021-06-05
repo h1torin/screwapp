@@ -4,9 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = policy_scope(Post).order(created_at: :desc)
-    # @tags = Tag.group(:name).count.order('desc')
-    # raise
-    @tags = Tag.all
+    @tags = Post.joins(:tags).group(:name).order('count(tags.name) desc').limit(10).count
   end
 
   def show
@@ -16,6 +14,7 @@ class PostsController < ApplicationController
   def hashtags
     tag = Tag.find_by(name: params[:name])
     @posts = tag.posts
+    @tags = Post.joins(:tags).group(:name).order('count(tags.name) desc').limit(5).count
     authorize @posts
   end
 
