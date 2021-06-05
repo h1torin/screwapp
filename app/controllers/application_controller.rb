@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :notif_counter
 
   include Pundit
 
@@ -27,12 +28,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:emoji, :background_color, :nickname])
   end
 
+  def notif_counter
+    @counter_new = Notification.where(user: current_user, status: false).count
+  end
+
   private
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
-
-
-
 end

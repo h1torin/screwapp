@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
 
-
   def index
     @comments = Comment.includes(post)
   end
@@ -15,9 +14,12 @@ class CommentsController < ApplicationController
     if @comment.save
       if @comment.user != @comment.post.user
         notification = Notification.create(event: "New Comment")
-        notification.update(comment: @comment, user: current_user)
-        # notification.comment = @comment
-        # notification.user = current_user
+        notification.update(comment: @comment, user: @comment.post.user)
+        # raise
+        # NotificationsChannel.broadcast_to(@comment.post.user, render_to_string(partial: 'notifications/notification', locals: { notification: notification }))
+        # NotificationsChannel.broadcast_to(@comment.post.user, notification.event)
+        @counter = Notification.where(user: @comment.post.user).where(status: false).count
+        ActionCable.server.broadcast("general", "#{@counter}")
       end
       redirect_to post_path(@post)
     else
@@ -25,8 +27,6 @@ class CommentsController < ApplicationController
     end
     authorize(@comment)
   end
-
-
 
   # def destroy
   #   @comment = Comment.find(params[:id])
@@ -40,5 +40,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content, :post_id, :user_id)
   end
-
 end
