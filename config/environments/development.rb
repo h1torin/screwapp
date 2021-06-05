@@ -62,5 +62,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   #action cable
-  config.action_cable.allowed_request_origins = ['http://0.0.0.0:3000']
+  # config.action_cable.allowed_request_origins = ['http://0.0.0.0:3000']
 end

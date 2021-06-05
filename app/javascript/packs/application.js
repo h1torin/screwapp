@@ -30,10 +30,14 @@ import "chartkick/chart.js"
 
 // Internal imports, e.g:
 import preview from '../components/preview';
+import { initNotificationsCable } from '../channels/notification_channel';
+import { initCounter } from '../channels/counter';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   preview();
+  initNotificationsCable();
+  initCounter();
 });
 
 // This is a manifest file that'll be compiled into application.js, which will include all the files

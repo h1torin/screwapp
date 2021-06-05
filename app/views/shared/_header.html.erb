@@ -11,8 +11,8 @@
                     <% end %>
 
                   <div class="header-icon notification-counter">
-                    <% notifications = Notification.where(user: current_user).reverse %>
-                    <%= link_to notifications_path, id: "open_notification", class: "nav-link" do %>
+                    <% notifications = Notification.where(user: current_user, status: false) %>
+                    <%= link_to notifications_path, id: "open_notification", data: { turbolinks: false }, class: "nav-link" do %>
                       <%= render 'notifications/counter', counter: notifications.count %>
                     <% end %>
                   </div>

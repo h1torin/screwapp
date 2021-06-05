@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'notifications', to: 'notifications#index', as: 'notifications'
     resources :messages, :comments
 
-    # Websockets resemble this URL
-    mount ActionCable.server => '/cable'
+  # Websockets resemble this URL
+  # mount ActionCable.server => '/cable'
 
 end
