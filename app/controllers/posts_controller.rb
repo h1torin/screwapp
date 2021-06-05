@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = policy_scope(Post).order(created_at: :desc)
+    @tags = Post.joins(:tags).group(:name).order('count(tags.name) desc').limit(10).count
   end
 
   def show
@@ -13,6 +14,7 @@ class PostsController < ApplicationController
   def hashtags
     tag = Tag.find_by(name: params[:name])
     @posts = tag.posts
+    @tags = Post.joins(:tags).group(:name).order('count(tags.name) desc').limit(5).count
     authorize @posts
   end
 
@@ -59,7 +61,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :category_id, :hide_user, :hide_content, :id_user, :photo)
+    params.require(:post).permit(:content, :category_id, :hide_user, :hide_content, :id_user, :photo, :tag_ids, :tag)
   end
 
   def require_same_user

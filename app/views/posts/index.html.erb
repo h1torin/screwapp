@@ -1,10 +1,27 @@
 <div class="container mb-5">
 
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <div data-toggle="collapse" data-target="#collapseExampleOne" aria-expanded="false" aria-controls="collapseExampleOne">
+        <h2>Trending hashtags</h2>
+      </div>
+      <% @tags.each_pair do |key, value| %>
+      <div class="collapse" id="collapseExampleOne">
+        <h4>#<%= link_to key, hashtag_path(key) %> in <%= value %> <%= 'Post'.pluralize(value) %></h4>
+        <hr>
+      </div>
+      <% end %>
+    </div>
+  </div>
   <%# <div class="row d-flex justify-content-center">
+
+  <div class="row d-flex justify-content-left">
+
+
     <div class="screwfeed">
       <div class="screw-headline">Hottest screws</div>
     </div>
-  </div> %>
+  </div>
 
   <div class="column">
     <% @posts.each do |post| %>
@@ -41,12 +58,12 @@
                 <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
               <% end %>
             <% end %>
-
-
+            <% disable_button = "" %>
+            <% if post.content.length < 180 %>
+              <% disable_button = "disable-button" %>
+            <% end %>
           <div class="post-reactions d-flex justify-content-between align-items-center">
-
-            <%= link_to "show all", post_path(post), class:"show-all hashtag" %>
-
+            <%= link_to "show all", post_path(post), class:"show-all hashtag " + disable_button %>
           <div>
             <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
               <% if user_reaction.present? %>
@@ -63,32 +80,23 @@
                 <% end %>
               <% end %>
               <%= link_to post_path(post, origin: "index") do %>
-                <span title="Comment"><i class="bi bi-chat pl-3 text-warning"></i></span>
-              <span class="text-light-gray"><%= post.comments.count %></span>
+                <span title="Comment"><i class="bi bi-chat pl-2 text-warning"></i></span>
+              <span class="text-light-gray pr-2"><%= post.comments.count %></span>
               <% end %>
             </div>
           </div>
-
-
-
-
-
-
         </div>
       </div>
     </div>
     <% end %>
 </div>
-<br>
-<br>
-<br>
-<br>
-<%# @posts.each do |post| %>
-  <%#= post.category.name %>
-  <%#= pie_chart post.category.group(:name).count %>
-<%# end %>
 
-<%#= bar_chart Category.group(:name) %>
+
+<br>
+<br>
+<br>
+<br>
+
 
 <br>
 <br>
