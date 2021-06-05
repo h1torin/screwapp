@@ -22,6 +22,6 @@ Rails.application.routes.draw do
     resources :messages, :comments
 
     # Websockets resemble this URL
-    # mount ActionCable.server => '/cable'
+    mount ActionCable.server => '/cable'
 
 end

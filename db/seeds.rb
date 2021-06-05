@@ -1,9 +1,9 @@
-User.destroy_all
-Post.destroy_all
-Reaction.destroy_all
-Category.destroy_all
-Comment.destroy_all
-Tag.destroy_all
+# User.destroy_all
+# Post.destroy_all
+# Reaction.destroy_all
+# Category.destroy_all
+# Comment.destroy_all
+# Tag.destroy_all
 
 puts "Testing"
 user_6 = User.create(email: "blu@me.com", password: "123456", nickname: "Blue Chicken", emoji: "😅", background_color: "blue")
