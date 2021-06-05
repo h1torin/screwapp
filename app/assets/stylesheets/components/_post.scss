@@ -37,11 +37,12 @@ html {
 }
 .screw-headline {
   font-family: "Nanum Pen Script";
-  font-size: 36px;
-  padding: 20px;
+  font-size: 32px;
   color: #d80009;
   -webkit-text-stroke-width: 0.7px;
   -webkit-text-stroke-color: #d80009;
+  padding-left: 25px;
+  padding-top: 10px;
 }
 
 .screw-home-headline {
@@ -148,13 +149,18 @@ html {
   -webkit-text-stroke-width: 0.7px;
   -webkit-text-stroke-color: #0800d8;
   text-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
-  margin-bottom: 30px;
+  padding-left: 5px;
+  padding-bottom: 2px;
 }
 
 .hashtag {
   color: $light-blue !important;
 }
 
-.post-new {
+.post-new a {
   color: $gray;
+}
+
+.disable-button {
+  opacity: 0;
 }
