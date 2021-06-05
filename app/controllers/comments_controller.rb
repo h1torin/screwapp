@@ -13,20 +13,16 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      if @comment.user != @comment.post.user
-        notification = Notification.create(event: "New Comment")
-        notification.update(comment: @comment, user: current_user)
-        # notification.comment = @comment
-        # notification.user = current_user
-      end
+    if @comment.user != @comment.post.user
+      notification = Notification.create(event: "New Comment")
+      notification.update(comment: @comment, user: @comment.post.user)
+    end
       redirect_to post_path(@post)
     else
       render 'new'
     end
     authorize(@comment)
   end
-
-
 
   # def destroy
   #   @comment = Comment.find(params[:id])

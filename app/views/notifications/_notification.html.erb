@@ -1,6 +1,11 @@
-  <% if notification.user != current_user %>
+  <% if notification.user == current_user %>
     <li>
       <%= notification.event %>
       <span> <%= notification.created_at.strftime("%d %b. %Y") %></span>
+      <% if notification.comment %>
+         <%= link_to 'post', notification.comment.post  %>
+         <% else %>
+         <%= link_to 'post', notification.reaction.post  %>
+      <% end %>
     </li>
   <% end %>
