@@ -104,7 +104,7 @@
   font-family: "Nanum Pen Script";
   font-size: 24px;
   background-color: #0800d8;
-  color: #ffffff;
+  color: #ffffff !important;
   -webkit-text-stroke-width: 0.3px;
   -webkit-text-stroke-color: #ffffff;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
@@ -120,8 +120,8 @@
   font-family: "Nanum Pen Script";
   font-size: 24px;
   background-color: #ffffff;
-  color: #0800d8;
+  color: #0800d8 !important;
   -webkit-text-stroke-width: 0.3px;
-  -webkit-text-stroke-color: #ffffff;
+  -webkit-text-stroke-color: #0800d8;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
 }
