@@ -12,3 +12,30 @@
   border-radius: 50px;
   border: none;
 }
+
+.trending-hashtags {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  background-color: #FFFFFF;
+  list-style-type: none;
+  width: 100vw;
+  top: 65px;
+}
+
+.search-form {
+  position: relative;
+}
+
+.search-form-container {
+  position: relative;
+
+}
+
+.search-form-expanded {
+  width: 100vw;
+  left: -40vw;
+  top: 5px;
+  height: 50px;
+  transition: width 1s;
+}
