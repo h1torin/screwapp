@@ -29,11 +29,15 @@ import "chartkick/chart.js"
 
 
 // Internal imports, e.g:
-import preview from '../components/preview';
+import { preview } from '../components/preview';
+
+import { searchForm } from '../components/search_form';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   preview();
+
+  searchForm();
 });
 
 // This is a manifest file that'll be compiled into application.js, which will include all the files

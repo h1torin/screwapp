@@ -2,20 +2,6 @@
 
   <div class="row d-flex justify-content-center">
     <div class="col-md-6">
-      <div data-toggle="collapse" data-target="#collapseExampleOne" aria-expanded="false" aria-controls="collapseExampleOne">
-        <h2>Trending hashtags</h2>
-      </div>
-      <% @tags.each_pair do |key, value| %>
-      <div class="collapse" id="collapseExampleOne">
-        <h4>#<%= link_to key, hashtag_path(key) %> in <%= value %> <%= 'Post'.pluralize(value) %></h4>
-        <hr>
-      </div>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-6">
       <div class="screwfeed">
         <div class="screw-headline">Hottest screws</div>
       </div>

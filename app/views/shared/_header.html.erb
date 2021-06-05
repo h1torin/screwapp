@@ -1,14 +1,23 @@
       <div class="header d-flex justify-content-center sticky-top">
         <div class="row">
           <div class="col-md-6">
-            <ul>
               <div class="list-icons-nav-bar mt-2">
                 <% if user_signed_in? %>
                     <div class="nav-item">
-                      <%= form_with url: search_index_path(name: :query), method: :get, local: true, class: 'form-inline search-form' do |form| %>
-                      <%= form.text_field :query, value: params[:query], class: 'form-control mr-sm-1', placeholder: 'Search screw-ups' %>
+                      <div class="search-form-container">
+                        <%= form_with url: search_index_path(name: :query), method: :get, local: true, class: 'form-inline search-form' do |form| %>
+                        <%= form.text_field :query, value: params[:query], class: 'form-control mr-sm-1 input-field', placeholder: 'Search screw-ups' %>
+                        <% end %>
+                        <ul class="trending-hashtags">
+                          <% @tags = Post.joins(:tags).group(:name).order('count(tags.name) desc').limit(10).count %>
+                                <% @tags.each_pair do |key, value| %>
+                                <h3>Trending hashtags</h3>
+                                <li><h4>#<%= link_to key, hashtag_path(key) %> in <%= value %> <%= 'Post'.pluralize(value) %></h4></li>
+                                <hr>
+                                <% end %>
+                        </ul>
+                      </div>
                     </div>
-                    <% end %>
 
                   <div class="header-icon notification-counter">
                     <% notifications = Notification.where.not(user: current_user).reverse %>
@@ -25,7 +34,6 @@
                   </li>
                 <% end %>
               </div>
-            </ul>
           </div>
         </div>
       </div>
