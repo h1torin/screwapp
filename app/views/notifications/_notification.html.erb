@@ -1,14 +1,23 @@
-  <% if notification.user == current_user %>
-    <li>
-      <div class="notification-card">
+
+
+<% if notification.user == current_user %>
+  <li>
+    <div class="notif-card">
+      <div class="notif-event">
         <%= notification.event %>
         <% notification.status = true %>
-        <span> <%= notification.created_at.strftime("%d %b. %Y") %></span>
         <% if notification.comment %>
-           <%= link_to 'post', notification.comment.post  %>
+           <%= link_to ('at your post'), notification.comment.post  %>
            <% else %>
-           <%= link_to 'post', notification.reaction.post  %>
+           <%= link_to ('at your post'), notification.reaction.post  %>
         <% end %>
+
       </div>
-    </li>
-  <% end %>
+      <span>
+        <p>
+        <%= notification.created_at.strftime("%d %b. %Y") %>
+        </p>
+      </span>
+    </div>
+  </li>
+<% end %>
