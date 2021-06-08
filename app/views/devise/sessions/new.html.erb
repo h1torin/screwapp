@@ -1,11 +1,13 @@
  <style>
    body {background-color: orange;}
  </style>
-<div class="container col-6">
+<div class="container col-9">
   <div class="row d-flex justify-content-center">
     <div class="col-md-6">
-    <h3>Do you need some support today?</h3>
-    <h3>We are here for you!</h3>
+      <div class="text-center mt-4">
+        <h3>Do you need some support today?</h3>
+        <h3>We are here for you!</h3>
+      </div>
     <br>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -21,27 +23,27 @@
                     label: false,
                     placeholder: "Password",
                     input_html: { autocomplete: "current-password" } %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        <h4 class="text-center mt-4 mb-5"><%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %></h4>
       </div>
-      <div class="d-flex justify-content-between mb-4">
-        <div class="form-actions mr-4">
-          <%= f.button :submit, "Log in", class: "btn-primary btn-rounded-blue" %>
-        </div>
+      <div class="d-flex justify-content-between mb-5 mt-4">
+        <div class="form-actions">
+          <%= f.button :submit, "Log in", class: "btn-rounded-blue" %>
         <% end %>
+        </div>
+        <div class="">
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-rounded-white" %><br />
+          <% end %>
+        </div>
       </div>
-      <div>
+      <div class="text-center">
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
           <h4 class="text-center">Forgot your password?</h4>
           <h4><%= link_to "click here!", new_password_path(resource_name), class: "mx-auto" %></h4><br />
       </div>
       <% end %>
-      <p>Not a user yet?</p>
-        <div>
-          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-            <%= link_to "Sign up", new_registration_path(resource_name), class: "btn-info btn-rounded-white" %><br />
-          <% end %>
-        </div>
-    </div>
+<!--       <p>Not a user yet?</p>
+ -->    </div>
 
   </div>
 </div>
