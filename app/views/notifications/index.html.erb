@@ -1,8 +1,14 @@
-<div class="container">
-  <h1>Last Notifications</h1>
-  <!-- <p>Find me in app/views/notifications/index.html.erb</p> -->
-  <br>
-  <br>
-  <%= render "notification_center", notifications: @notifications %>
+<!-- <p>Find me in app/views/notifications/index.html.erb</p> -->
+
+<div class="container col-md-6">
+  <div class="row d-flex justify-content-center">
+    <div class="notif-feed">
+      <div class="screw-headline">Last Notifications</div>
+      <%= render "notification_center", notifications: @notifications %>
+    </div>
+  </div>
 </div>
+
+
+
 
