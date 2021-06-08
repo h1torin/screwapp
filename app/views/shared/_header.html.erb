@@ -4,7 +4,7 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-              <div class="list-icons-nav-bar mt-2">
+              <div class="list-icons-nav-bar mt-3">
                 <% if user_signed_in? %>
                     <div class="nav-item">
                       <div class="search-form-container">
@@ -12,7 +12,7 @@
                         <%= form.text_field :query, value: params[:query], class: 'form-control input-field', placeholder: 'Search screw-ups' %>
                         <% end %>
                         <div class="trending-hashtags col-md-6">
-                            <% @tags = Post.joins(:tags).group(:name).order('count(tags.name) desc').limit(5).count %>
+                            <% @tags = Post.joins(:tags).group(:name).order('count(tags.name) desc').limit(7).count %>
                                   <h4 class="text-trending-hashtags">Trending hashtags</h4 style="color: ">
                                   <% @tags.each_pair do |key, value| %>
                                   <hr class="hr-trending-hashtags">
