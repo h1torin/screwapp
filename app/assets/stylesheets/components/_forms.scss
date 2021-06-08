@@ -15,14 +15,22 @@
 
 .trending-hashtags {
   display: none;
-  position: absolute;
-  z-index: 1000;
+  position: relative;
+  // z-index: 71;
   background-color: #FFFFFF;
-  list-style-type: none;
-  width: 100vw;
-  top: 65px;
+  width: 92vw;
+  top: 15px;
+  padding: 15px;
+  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.3);
+  transition: width 1s, height 1s;
+  border-radius: 10px;
+  margin: auto;
 }
 
+.input-field {
+  width: 70vw;
+  heigh: 40px !important;
+}
 .search-form {
   position: relative;
 }
@@ -32,10 +40,24 @@
 
 }
 
+.hr-trending-hashtags {
+  margin-left: -15px;
+  margin-right: -15px;
+  padding: 0;
+}
+
+.text-trending-hashtags {
+  font-size: 22px;
+  color: #d80009;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #d80009;
+}
+
 .search-form-expanded {
-  width: 100vw;
-  left: -40vw;
+  width: 92vw;
   top: 5px;
-  height: 50px;
-  transition: width 1s;
+  height: 42px;
+  transition: width 1.5s, height 1s;
+  border-radius: 10px;
+  margin: auto;
 }
