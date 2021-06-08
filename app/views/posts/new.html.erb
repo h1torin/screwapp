@@ -5,14 +5,15 @@
       <div class="screw-headline">It's a safe space</div>
       <%= simple_form_for @post do |f| %>
         <%= f.input :content,
-                    label: "Write your post here",
+                    label: false,
+                    placeholder: "Write your post here",
                     required: true,
                     input_html: { autocomplete: "off" } %>
         <%= f.association :category,
                           label: "Select a category", collection: Category.all %>
 
-        <%= f.input :photo, as: :file %>
-        <%= f.input :hide_content %>
+        <%= f.input :photo, as: :file, class:"blue-button" %>
+        <%= f.input :hide_content, label_html: { class: "screw-nickname" } %>
         <%= f.input :hide_user %>
         <%= f.submit "Create your post", class: "blue-button" %>
       <% end %>

@@ -11,9 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
-    <% console %>
-
+  <body class="<%= "orange-bg" if @orange_background %>">
     <div class="d-flex flex-column min-vh-100">
     <% if current_user %>
     <%= render 'shared/header' %>

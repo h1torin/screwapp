@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :require_same_user, only: [:edit, :udpate, :destroy]
+  before_action :require_same_user, only: %i[edit udpate destroy]
 
   def index
     @posts = policy_scope(Post).order(created_at: :desc)
@@ -19,6 +19,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @orange_background = true
     @post = Post.new
     authorize @post
   end
@@ -65,7 +66,7 @@ class PostsController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @post.user and !current_user.admin
+    if (current_user != @post.user) && !current_user.admin
       flash[:danger] = "You can only edit or delete your own posts"
       redirect_to posts_path
     end
