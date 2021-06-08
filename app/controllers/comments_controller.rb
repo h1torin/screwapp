@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       if @comment.user != @comment.post.user
-        notification = Notification.create(event: "New Comment")
+        notification = Notification.create(event: "New Comment by #{@comment.user.nickname}")
         notification.update(comment: @comment, user: @comment.post.user)
         # raise
         # NotificationsChannel.broadcast_to(@comment.post.user, render_to_string(partial: 'notifications/notification', locals: { notification: notification }))
