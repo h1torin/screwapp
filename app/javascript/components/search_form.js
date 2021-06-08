@@ -1,7 +1,7 @@
 
 const searchForm = () => {
   const searchInput = document.getElementById("query");
-  searchInput.addEventListener("focus", () => {
+  searchInput.addEventListener("click", () => {
     const trendingHashtags = document.querySelector(".trending-hashtags");
     const notificationIcon = document.querySelector(".notification-counter");
     const inputField = document.querySelector(".input-field");
@@ -10,7 +10,7 @@ const searchForm = () => {
     trendingHashtags.classList.add("d-block")
     notificationIcon.classList.add("d-none")
     inputField.classList.add("search-form-expanded")
-    restOfArticle.addEventListener("blur", () => {
+    restOfArticle.addEventListener("click", () => {
       trendingHashtags.classList.remove("d-block")
       notificationIcon.classList.remove("d-none")
       inputField.classList.remove("search-form-expanded")
