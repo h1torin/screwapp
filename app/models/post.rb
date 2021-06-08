@@ -12,7 +12,7 @@ class Post < ApplicationRecord
 
   after_create do
     hashtags = self.content.scan(/#\w+/)
-    hashtags.uniq.map do |hashtag|
+    hashtags.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.delete('#'))
       self.tags << tag
     end
@@ -22,7 +22,7 @@ class Post < ApplicationRecord
     self.tags.clear
     hashtags = self.content.scan(/#w*/)
     raise
-    hashtags.uniq.map do |hashtag|
+    hashtags.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.delete('#'))
       self.tags << tag
     end

@@ -12,7 +12,7 @@
               </div>
 
               <% unless @post.hide_content? %>
-               <p><%= render_with_hashtags(@post.content) %></p>
+               <p id="hashtag"><%= render_with_hashtags(@post.content) %></p>
               <% end %>
               <% if @post.photo.attached? %>
                 <img src="<%= (url_for(@post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
@@ -21,20 +21,20 @@
           <% user_reaction = @post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
               <% if user_reaction.present? %>
 
-                <%= link_to post_reaction_path(@post, user_reaction), method: :delete do %>
-                <span title="Unlike"><i class="bi bi-heart-fill"></i></span>
-                <%= @post.reactions.count %>
+                <%= link_to post_reaction_path(@post, user_reaction, origin: "show"), method: :delete do %>
+                <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                <span class="text-light-gray"><%= @post.reactions.count %></span>
                 <% end %>
 
                 <% else %>
-                <%= link_to post_reactions_path(@post), method: :post do %>
-                <span title="Like"><i class="bi bi-heart"></i></span>
-                 <%= @post.reactions.count %>
+                <%= link_to post_reactions_path(@post, origin: "show"), method: :post do %>
+                <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                <span class="text-light-gray"> <%= @post.reactions.count %></span>
                 <% end %>
               <% end %>
-              <%= link_to post_path(@post) do %>
-                <span title="Comment"><i class="bi bi-chat pl-3"></i></span>
-              <%= @post.comments.count %>
+              <%= link_to post_path(@post, origin: "show") do %>
+                <span title="Comment"><i class="bi bi-chat pl-2 text-warning"></i></span>
+              <span class="text-light-gray pr-1"><%= @post.comments.count %></span>
               <% end %>
           </div>
         </div>
@@ -52,18 +52,18 @@
       </div>
     </div>
       <% @post.comments.each do |comment| %>
-      <div class="comment col-md-6">
-        <div class="screw-post p-4">
-          <div class="avatar-container">
-            <div id="show-avatar-profile" style="background-color: <%= comment.user.background_color %> ">
+        <div class="comment col-md-6">
+          <div class="screw-post p-4">
+            <div class="avatar-container">
+              <div id="show-avatar-profile" style="background-color: <%= comment.user.background_color %> ">
                 <%= comment.user.emoji %>
-                </div>
-                <div class='comment-author'><%= comment.user.nickname %></div>
               </div>
-            <%= comment.content %>
+              <div class='comment-author'>
+                <%= comment.user.nickname %>
+              </div>
             </div>
+            <%= comment.content %>
           </div>
-      </div>
         </div>
       <% end %>
     <div class="margin-comments">

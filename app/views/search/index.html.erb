@@ -20,52 +20,80 @@
 </div>
 
 <div class="container">
-  <div class="column">
-      <% @posts.each do |post| %>
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-6">
-          <div class="i-post-card">
-            <div class="i-user-info">
-              <% unless post.hide_user? %>
-              <div class="d-flex justify-content-left">
-                <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
-                  <%= post.user.emoji %>
-                </div>
-                <div class="nickname">
-                  <p class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></p>
+<div class="column">
+    <% @posts.each do |post| %>
+    <div id="post-<%=post.id%>"   class="row d-flex justify-content-center post-parent">
+      <div class="col-md-6">
+        <div class="i-post-card">
+          <div class="i-user-info">
+            <% unless post.hide_user? %>
+            <div class="d-flex justify-content-left align-items-center">
+              <div id="show-avatar-profile" style="background-color: <%= post.user.background_color %> ">
+                <%= post.user.emoji %>
+              </div>
+                <div class='screw-nickname ml-2 mt-1'><%= post.user.nickname %></div>
+            </div>
+            <% end %>
+            <% if current_user == post.user %>
+              <div>
+                <i class="three-dots" data-toggle="dropdown"></i>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <%= link_to "Edit", edit_post_url(post), class: "dropdown-item" %>
+                    <%= link_to "Remove", post_path(post), class: "dropdown-item",
+                        method: :delete,
+                        data: { confirm: "Are you sure?"} %>
                 </div>
               </div>
               <% end %>
-              </div>
+            </div>
+
+            <%= link_to post_path(post, origin: "index") do %>
               <% unless post.hide_content? %>
-                <p><%= render_with_hashtags(post.content) %></p>
+                <p class="three-lines post-new"><%= render_with_hashtags(post.content) %></p>
               <% end %>
               <% if post.photo.attached? %>
-                <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto;">
+                <img src="<%= (url_for(post.photo)) %>" style="width: 100%; height: auto; padding-bottom: 10px;">
               <% end %>
-
-
-              <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
+            <% end %>
+            <% disable_button = "" %>
+            <% if post.content.length < 180 %>
+              <% disable_button = "disable-button" %>
+            <% end %>
+          <div class="post-reactions d-flex justify-content-between align-items-center">
+            <%= link_to "show all", post_path(post), class:"show-all hashtag " + disable_button %>
+          <div>
+            <% user_reaction = post.reactions.find {|reaction| reaction.user_id == current_user.id} %>
               <% if user_reaction.present? %>
-              <%= link_to "Unlike (#{post.reactions.count})", post_reaction_path(post, user_reaction),
-                method: :delete %>
-                <% else %>
-                <%= link_to "Like (#{post.reactions.count})", post_reactions_path(post),
-                  method: :post %>
-              <% end %>
-              <%= link_to post_path(post) do %>
-                <span title="Comment"><i class="bi bi-chat-right"></i></span>
-              <%= post.comments.count %>
-              <% end %>
 
+                <%= link_to post_reaction_path(post, user_reaction, origin: "index"), method: :delete do %>
+                <span title="Unlike"><i class="bi bi-heart-fill text-danger"></i></span>
+                <span class="text-light-gray"><%= post.reactions.count %></span>
+                <% end %>
+
+                <% else %>
+                <%= link_to post_reactions_path(post, origin: "index"), method: :post do %>
+                <span title="Like"><i class="bi bi-heart text-danger"></i></span>
+                <span class="text-light-gray"> <%= post.reactions.count %></span>
+                <% end %>
+              <% end %>
+              <%= link_to post_path(post, origin: "index") do %>
+                <span title="Comment"><i class="bi bi-chat pl-2 text-warning"></i></span>
+              <span class="text-light-gray pr-2"><%= post.comments.count %></span>
+              <% end %>
+            </div>
           </div>
         </div>
-
       </div>
-      <% end %>
-  </div>
+    </div>
+    <% end %>
 </div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- <div class="container">
   <%# @hashtags.each do |hashtag| %>
     <li>#<%#= hashtag.name %></li>

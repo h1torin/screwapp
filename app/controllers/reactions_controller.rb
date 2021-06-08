@@ -14,13 +14,23 @@ class ReactionsController < ApplicationController
       render 'new'
     end
     authorize(reaction)
-    # redirect_to posts_path(anchor: "post-#{post.id}")
+
+    if params["origin"] == "index"
+      redirect_to posts_path(anchor: "post-#{post.id}")
+    else
+      redirect_to post_path(post, anchor: "post-#{post.id}")
+    end
   end
 
   def destroy
-    reaction = Reaction.find(params["id"])
+    reaction = Reaction.find(params["id"]) 
+    post = reaction.post
     authorize(reaction)
     reaction.destroy
-    redirect_to posts_path(anchor: "post-#{reaction.post.id}")
+    if params["origin"] == "index"
+      redirect_to posts_path(anchor: "post-#{post.id}")
+    else
+      redirect_to post_path(post, anchor: "post-#{post.id}")
+    end
   end
 end
