@@ -13,10 +13,10 @@
                         <% end %>
                         <div class="trending-hashtags col-md-6">
                             <% @tags = Post.joins(:tags).group(:name).order('count(tags.name) desc').limit(7).count %>
-                                  <h4 class="text-trending-hashtags">Trending hashtags</h4 style="color: ">
+                                  <h4 class="text-trending-hashtags">Trending hashtags</h4>
                                   <% @tags.each_pair do |key, value| %>
                                   <hr class="hr-trending-hashtags">
-                                  <h4><span style="color: #5a54e3;">#<%= link_to key, hashtag_path(key) %></span> in <%= value %> <%= 'Post'.pluralize(value) %></h4>
+                                  <h4><span class="blur-hashtag" style="color: #5a54e3;">#<%= link_to key, hashtag_path(key), class: "clickable" %></span> in <%= value %> <%= 'Post'.pluralize(value) %></h4>
                                   <% end %>
                         </div>
                       </div>
