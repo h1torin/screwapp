@@ -29,13 +29,18 @@ import "chartkick/chart.js"
 
 
 // Internal imports, e.g:
-import preview from '../components/preview';
+import { preview } from '../components/preview';
+
+import { searchForm } from '../components/search_form';
+
 import { initNotificationsCable } from '../channels/notification_channel';
 import { initCounter } from '../channels/counter';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   preview();
+  searchForm();
+  
   initNotificationsCable();
   initCounter();
 });

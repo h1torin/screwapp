@@ -12,20 +12,20 @@
                 <%= image_tag('home.png', class: "home-pic middled") %>
               </div>
             </div>
-          </div>  
+          </div>
         <div class="screw-home-headline middled"> If life gives you screw-ups, make Screws out of them! </div>
       </div>
     </div>
   </div>
-
-  <br>
-  <br>
-  <br>
   <div class="row justify-content-center mt-5">
     <div class="col-md-6">
       <div class="buttons d-flex justify-between">
-        <%= link_to "Log in", new_user_session_path, class: "btn-primary btn-rounded-blue" %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn-info btn-rounded-white" %>
+        <% if user_signed_in? %>
+          <h1>Welcome to our page</h1>
+        <% else %>
+         <%= link_to "Log in", new_user_session_path, class: "blue-button" %>
+         <%= link_to "Sign up", new_user_registration_path, class: "white-button" %>
+        <% end %>
       </div>
     </div>
   </div>
