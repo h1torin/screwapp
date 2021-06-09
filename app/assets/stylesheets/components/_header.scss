@@ -1,16 +1,16 @@
 .header {
   background: $light-yellow;
-  height: 3.5rem;
+  height: 4.5rem;
   position: fixed;
   top: 0;
   width: 100%;
+  font-size: 18px;
 }
 
 .header-icon {
   color: $dark-blue;
   height: 35px;
 }
-
 
 .hidden {
   display: none;
@@ -23,7 +23,6 @@
 // .header-lewagon .header-brand img {
 //   width: 40px;
 // }
-
 
 // .list-icons-header-bar {
 //   display: flex;

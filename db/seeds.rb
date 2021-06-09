@@ -23,15 +23,15 @@ compliment_doer = User.create(email: "compl@me.com", password: "123456", nicknam
 
 puts "Testing category"
 
-work_and_study_category = Category.create(name: "Work and Study")
+work_and_study_category = Category.create(name: "Work & Study")
 finance_category = Category.create(name: "Finance")
-household_category = Category.create(name: "household_category")
+household_category = Category.create(name: "Household")
 relationship_category = Category.create(name: "Relationship")
 family_category = Category.create(name:  "Family")
 friends_category = Category.create(name: "Friends")
 health_category = Category.create(name: "Health")
-leisure_category = Category.create(name: "Hobby and Leisure")
-other_category = Category.create(name:  "Other Screw-ups")
+leisure_category = Category.create(name: "Leisure")
+other_category = Category.create(name:  "Other Screws")
 
 
 
