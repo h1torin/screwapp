@@ -16,16 +16,16 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     posts_path # your path
   end
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:emoji, :background_color, :nickname])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[emoji background_color nickname])
 
     # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: [:emoji, :background_color, :nickname])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[emoji background_color nickname])
   end
 
   def notif_counter
@@ -36,5 +36,9 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
   end
 end

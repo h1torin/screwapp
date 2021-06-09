@@ -164,3 +164,15 @@ html {
 .disable-button {
   opacity: 0;
 }
+
+.screw-headline-white {
+  font-family: "Nanum Pen Script";
+  font-size: 32px;
+  color: #ffffff;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #ffffff;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  text-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
+  line-height: 34px;
+}

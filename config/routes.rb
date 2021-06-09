@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'notifications/index'
   devise_for :users
-  root to: 'posts#index'
+  root to: 'pages#home'
 
 
   get 'profile', to: 'users#profile', as: 'profile'

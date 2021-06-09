@@ -1,0 +1,7 @@
+# config/meta.yml
+
+meta_product_name: "ScrewApp"
+meta_title: "ScrewApp - Screw up for good!"
+meta_description: "A fun and safe space for people to share their imperfections without the pressure of the toxic positivity from other social media"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@VHitorin" # required for Twitter

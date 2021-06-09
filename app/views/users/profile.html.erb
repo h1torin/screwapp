@@ -24,7 +24,7 @@
   <div class="row d-flex justify-content-center">
     <div class="col-md-6">
       <div class="clickables">
-        <h2 class="screw-headline">Categories of your Screw-ups</h2>
+        <h2 class="screw-headline">Your best categories</h2>
         <h4>If you want to peep in your screw-ups and see how you can screw-up differently, click on one of these: </h4>
           <% categories = [] %>
           <% @posts.each do |post| %>
@@ -59,7 +59,7 @@
             <div data-toggle="collapse" data-target="#collapseExampleSeven" aria-expanded="false" aria-controls="collapseExampleSeven">
               <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
-            <% elsif category == "Hobby and Leisure" %>
+            <% elsif category == "Leisure" %>
             <div data-toggle="collapse" data-target="#collapseExampleEight" aria-expanded="false" aria-controls="collapseExampleEight">
               <h4 style="color: #0800d8;"><%= category %></h4>
             </div>
