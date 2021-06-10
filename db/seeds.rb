@@ -11,7 +11,7 @@ family_guy = User.create(email: "blu@me.com", password: "123456", nickname: "Cut
 cvo_cofounder = User.create(email: "bla@me.com", password: "123456", nickname: "PuzzledSpot4329", emoji: "🤠", background_color: "white")
 cool_girl = User.create(email: "rasp@me.com", password: "123456", nickname: "SassyFace6711", emoji: "🤪", background_color: "black")
 golden_boy = User.create(email: "brick@me.com", password: "123456", nickname: "CrabbyTail227", emoji: "🐶", background_color: "green")
-fun_person = User.create(email: "straw@me.com", password: "123456", nickname: "MistyBear807", emoji: "🥸", background_color: "blue")
+fun_person = User.create(email: "straw@me.com", password: "123456", nickname: "MistyBear807", emoji: "🐝", background_color: "blue")
 cool_mom = User.create(email: "burb@me.com", password: "123456", nickname: "SillyStranger8548", emoji: "🦄", background_color: "orange")
 challenging_bro = User.create(email: "carb@me.com", password: "123456", nickname: "RusticDoll4792", emoji: "🐣", background_color: "brown")
 public_persona = User.create(email: "publ@me.com", password: "123456", nickname: "UntudyAdvice4144", emoji: "🤡", background_color: "purple")
@@ -20,7 +20,7 @@ world_cook = User.create(email: "worl@me.com", password: "123456", nickname: "Cr
 nice_partner = User.create(email: "nice@me.com", password: "123456", nickname: "MistyKitty5270", emoji: "👀", background_color: "black")
 top_bride = User.create(email: "top@me.com", password: "123456", nickname: "MistyHumor4998", emoji: "💔", background_color: "green")
 einstein_himself = User.create(email: "eins@me.com", password: "123456", nickname: "SassyKitty5256", emoji: "🐝", background_color: "green")
-compliment_doer = User.create(email: "compl@me.com", password: "123456", nickname: "PuzzledStranger1550", emoji: "🐝", background_color: "gray")
+compliment_doer = User.create(email: "compl@me.com", password: "123456", nickname: "PuzzledStranger1550", emoji: "🙊", background_color: "gray")
 
 puts "Testing category"
 
