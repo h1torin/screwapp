@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'notifications/index'
   devise_for :users
+
+  authenticated :user do
+    root to: 'posts#index', as: :authenticated_root
+  end
+
   root to: 'pages#home'
 
 
