@@ -661,7 +661,7 @@ post.reactions.create(user: golden_boy)
 post.comments.create(user: cool_girl, content: "This too shall pass")
 post.comments.create(user: family_guy, content: "Oh no! I feel so sorry for you")
 puts "Finished category"
-post = Post.create(user: family_guy, content: "Today it made me feel terrible that I've never talked to my teenage younger sis' about love or relationships or sex... And her parents are best case 'traditionalist', so the topic is a complete taboo in the family. But because of this reason I don't know how to talk about such things as well. #screw #lovemylife #icanexplain #familyguy", category: family_category, created_at: DateTime.now - (rand * 8))
+post = Post.create(user: family_guy, content: "Today it made me feel terrible that I'd never talked to my teenage younger step sis' about her feelings, love or relationships.. And her parents are best case 'traditionalist', so the topic is a complete taboo in the family. But because of this reason I don't know how to talk about such things as well. #screw #lovemylife #icanexplain #familyguy", category: family_category, created_at: DateTime.now - (rand * 8))
 post.reactions.create(user: cool_girl)
 post.reactions.create(user: family_guy)
 post.reactions.create(user: cvo_cofounder)
