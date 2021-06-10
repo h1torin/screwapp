@@ -1,9 +1,9 @@
 User.destroy_all
 Post.destroy_all
+Comment.destroy_all
 Notification.destroy_all
 Reaction.destroy_all
 Category.destroy_all
-Comment.destroy_all
 Tag.destroy_all
 
 puts "Testing"
