@@ -7,23 +7,23 @@ class ReactionsController < ApplicationController
         notification = Notification.create(event: "New Like by #{reaction.user.nickname}")
         notification.update(user: reaction.post.user, reaction: reaction)
         @counter = Notification.where(user: reaction.post.user).where(status: false).count
-        ActionCable.server.broadcast("general", "#{@counter}")
+        ActionCable.server.broadcast("general", @counter.to_s)
       end
-      redirect_to posts_path
-    else
       if params["origin"] == "index"
         redirect_to posts_path(anchor: "post-#{post.id}")
       else
         redirect_to post_path(post, anchor: "post-#{post.id}")
       end
-      # redirect_to posts_path
+    elsif params["origin"] == "index"
+      redirect_to posts_path(anchor: "post-#{post.id}")
+    else
+      redirect_to post_path(post, anchor: "post-#{post.id}")
     end
     authorize(reaction)
-
   end
 
   def destroy
-    reaction = Reaction.find(params["id"]) 
+    reaction = Reaction.find(params["id"])
     post = reaction.post
     authorize(reaction)
     reaction.destroy
