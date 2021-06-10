@@ -7,7 +7,14 @@ class ReactionsController < ApplicationController
         notification = Notification.create(event: "New Like by #{reaction.user.nickname}")
         notification.update(user: reaction.post.user, reaction: reaction)
         @counter = Notification.where(user: reaction.post.user).where(status: false).count
-        ActionCable.server.broadcast("general", "#{@counter}")
+
+        if @counter == 0
+          @backgroundcolor = "transparent"
+        else
+          @backgroundcolor = "rgb(212, 78, 3)"
+        end
+        ActionCable.server.broadcast("general", {counter: "#{@counter}", color:"#{@backgroundcolor}"})
+
       end
       redirect_to posts_path
     else

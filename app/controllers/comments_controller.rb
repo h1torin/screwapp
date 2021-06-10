@@ -19,7 +19,15 @@ class CommentsController < ApplicationController
         # NotificationsChannel.broadcast_to(@comment.post.user, render_to_string(partial: 'notifications/notification', locals: { notification: notification }))
         # NotificationsChannel.broadcast_to(@comment.post.user, notification.event)
         @counter = Notification.where(user: @comment.post.user).where(status: false).count
-        ActionCable.server.broadcast("general", "#{@counter}")
+
+        if @counter = 0
+          @backgroundcolor = "transparent"
+        else
+          @backgroundcolor = "rgb(212, 78, 3)"
+        end
+        ActionCable.server.broadcast("general", {counter: "#{@counter}", color:"#{@backgroundcolor}"})
+
+        # ActionCable.server.broadcast("general", "#{@counter}")
       end
       redirect_to post_path(@post)
     else

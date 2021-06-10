@@ -8,7 +8,13 @@ class NotificationsController < ApplicationController
       notification.save
     end
     @counter_index = Notification.where(user: current_user).where(status: false).count
-    ActionCable.server.broadcast("general", "#{@counter_index}")
+    if @counter_index = 0
+      @backgroundcolor = "transparent"
+    else
+      @backgroundcolor = "rgb(212, 78, 3)"
+    end
+    ActionCable.server.broadcast("general", {counter: "#{@counter_index}", color:"#{@backgroundcolor}"})
+
     # raise
   end
 
