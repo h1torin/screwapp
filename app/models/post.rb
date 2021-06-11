@@ -11,21 +11,20 @@ class Post < ApplicationRecord
   # accepts_nested_attributes_for :categories
 
   after_create do
-    hashtags = self.content.scan(/#\w+/)
+    hashtags = content.scan(/#\w+/)
     hashtags.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.delete('#'))
-      self.tags << tag
+      tags << tag
     end
   end
 
   before_update do
-    self.tags.clear
-    hashtags = self.content.scan(/#w*/)
-    raise
+    tags.clear
+    hashtags = content.scan(/#w*/)
+    # raise
     hashtags.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.delete('#'))
-      self.tags << tag
+      tags << tag
     end
   end
 end
-
