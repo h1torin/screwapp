@@ -3,15 +3,19 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="screw-headline mt-3">It's a safe space</div>
+      <br>
       <%= simple_form_for @post do |f| %>
         <%= f.input :content,
-                    label: "Write your post here",
+                    label:false,
+                    placeholder: "Write your post here",
                     required: true,
                     input_html: { autocomplete: "off" } %>
         <%= f.association :category,
-                          label: "Select a category", collection: Category.all %>
+                          label:false,
+                          prompt: "Select a category*", 
+                          collection: Category.all %>
 
-        <%= f.input :photo, as: :file %>
+        <%= f.input :photo, input_html: { class: 'd-none' }, label_html: { class: 'upload-photo'}, label: '📷  add a photo' %>
         <%= f.input :hide_content %>
         <%= f.input :hide_user %>
         <%= f.submit "Create your post", class: "blue-button" %>
