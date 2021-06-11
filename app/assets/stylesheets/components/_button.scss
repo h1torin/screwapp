@@ -142,3 +142,19 @@
   -webkit-text-stroke-color: #ffffff;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
 }
+
+.upload-photo {
+  border: none;
+  padding: 8px 26px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 100px;
+  font-family: "Nanum Pen Script";
+  font-size: 24px;
+  background-color: #ffffff;
+  color: #0800d8 !important;
+  -webkit-text-stroke-width: 0.3px;
+  -webkit-text-stroke-color: #0800d8;
+  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
+}
