@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-md-6 mt-4 mb-4">
-      <div class="avatar-container pl-4">
+      <div class="avatar-container row d-flex justify-content-center">
         <div class="big-avatar" style="background-color: <%= @user.background_color %> ">
           <%= @user.emoji %>
         </div>
-      <h1 class="screw-headline">Hi <%= @user.nickname %>! </h1>
+      <div class="screw-headline">Ave <%= @user.nickname %>! </div>
         </div>
-      <h4>So here you can see a quick overview of your screwups! Not bad, as of now you have <span style="color: #0800d8; font-size: 2rem;"><%= @posts.count %></span> screw-ups!</h4>
+      <div class="screw-paragraph">Here you can have an overview of <br>your progress. By now you have <br> <span style="color: #0800d8; font-weight: bold;"><%= @posts.count %></span> screws</div>
     </div>
   </div>
   <div class="row d-flex justify-content-center">
@@ -15,57 +15,57 @@
       <h2 class="screw-headline">Good job making screws!</h2>
         <%= pie_chart Post.joins(:category).where(user_id: @user.id).group(:name).count %>
       <br>
-      <h2 class="screw-headline">Your screw-track</h2>
-        <%= line_chart Post.joins(:category).where(user_id: @user.id).group_by_day(:created_at).count %>
+      <div class="screw-headline">Keep on screw-track!</div>
       <br>
+        <%= line_chart Post.joins(:category).where(user_id: @user.id).group_by_day(:created_at).count %>
     </div>
   </div>
-
+<br>
   <div class="row d-flex justify-content-center">
     <div class="col-md-6">
       <div class="clickables">
-        <h2 class="screw-headline">Your best categories</h2>
-        <h4>If you want to peep in your screw-ups and see how you can screw-up differently, click on one of these: </h4>
+        <div class="screw-headline">Push categories to <br>see your posts</div>
+        <br>
           <% categories = [] %>
           <% @posts.each do |post| %>
             <% categories << post.category.name %>
           <% end %>
          <%  categories.uniq.each do |category| %>
-           <% if category == "Work and Study" %>
+           <% if category == "Work & Study" %>
             <div data-toggle="collapse" data-target="#collapseExampleOne" aria-expanded="false" aria-controls="collapseExampleOne">
-              <h4 style="color: #0800d8;"><%= category %></h4>
+              <div class="profile-categories"><%= category %></div>
             </div>
            <% elsif category == "Finance" %>
             <div data-toggle="collapse" data-target="#collapseExampleTwo" aria-expanded="false" aria-controls="collapseExampleTwo">
-              <h4 style="color: #0800d8;"><%= category %></h4>
+              <div class="profile-categories"><%= category %></div>
             </div>
             <% elsif category == "Household" %>
             <div data-toggle="collapse" data-target="#collapseExampleThree" aria-expanded="false" aria-controls="collapseExampleThree">
-              <h4 style="color: #0800d8;"><%= category %></h4>
+              <div class="profile-categories"><%= category %></div>
             </div>
             <% elsif category == "Relationship" %>
             <div data-toggle="collapse" data-target="#collapseExampleFour" aria-expanded="false" aria-controls="collapseExampleFour">
-              <h4 style="color: #0800d8;"><%= category %></h4>
+              <div class="profile-categories"><%= category %></div>
             </div>
             <% elsif category == "Family" %>
             <div data-toggle="collapse" data-target="#collapseExampleFive" aria-expanded="false" aria-controls="collapseExampleFive">
-              <h4 style="color: #0800d8;"><%= category %></h4>
+              <div class="profile-categories"><%= category %></div>
             </div>
             <% elsif category == "Friends" %>
             <div data-toggle="collapse" data-target="#collapseExampleSix" aria-expanded="false" aria-controls="collapseExampleSix">
-              <h4 style="color: #0800d8;"><%= category %></h4>
+              <div class="profile-categories"><%= category %></div>
             </div>
             <% elsif category == "Health" %>
             <div data-toggle="collapse" data-target="#collapseExampleSeven" aria-expanded="false" aria-controls="collapseExampleSeven">
-              <h4 style="color: #0800d8;"><%= category %></h4>
+              <div class="profile-categories"><%= category %></div>
             </div>
             <% elsif category == "Leisure" %>
             <div data-toggle="collapse" data-target="#collapseExampleEight" aria-expanded="false" aria-controls="collapseExampleEight">
-              <h4 style="color: #0800d8;"><%= category %></h4>
+              <div class="profile-categories"><%= category %></div>
             </div>
-            <% elsif category == "Other Screw-ups" %>
+            <% elsif category == "Other Screws" %>
             <div data-toggle="collapse" data-target="#collapseExampleNine" aria-expanded="false" aria-controls="collapseExampleNine">
-              <h4 style="color: #0800d8;"><%= category %></h4>
+              <div class="profile-categories"><%= category %></div>
             </div>
            <% else %>
 
@@ -81,7 +81,7 @@
     <% @posts.each do |post| %>
     <div id="post-<%=post.id%>"   class="row d-flex justify-content-center post-parent">
       <div class="col-md-6">
-        <% if post.category.name == "Work and Study" %>
+        <% if post.category.name == "Work & Study" %>
           <div class="collapse" id="collapseExampleOne">
               <div class="i-post-card">
                 <div class="i-user-info">
@@ -417,7 +417,7 @@
                 </div>
               </div>
           </div>
-        <% elsif post.category.name == "Hobby and Leisure" %>
+        <% elsif post.category.name == "Leisure" %>
           <div class="collapse" id="collapseExampleEight">
               <div class="i-post-card">
                 <div class="i-user-info">
@@ -465,7 +465,7 @@
                 </div>
               </div>
           </div>
-        <% elsif post.category.name == "Other Screw-ups" %>
+        <% elsif post.category.name == "Other Screws" %>
           <div class="collapse" id="collapseExampleNine">
               <div class="i-post-card">
                 <div class="i-user-info">
@@ -521,23 +521,12 @@
 
   <div class="row d-flex justify-content-center">
     <div class="col-md-6">
-        <div class="profile-logout mt-5">
-          <h4>To end your session, click here:</h4>
-          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "blue-button" %>
+        <div class="profile-logout d-flex justify-content-center pb-5">
+          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "red-button" %>
         </div>
     </div>
   </div>
 </div>
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
