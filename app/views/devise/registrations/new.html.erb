@@ -4,7 +4,7 @@
 <div class="container col-9">
   <div class="row d-flex justify-content-center">
     <div class="col-md-6">
-      <div class="sign-in-headline">Do you need some support today? We are here for you!</div>
+      <div class="sign-in-headline">Let’s make your anonymous account!</div>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
@@ -25,10 +25,9 @@
           <%= f.input :password_confirmation,
                       required: true,
                       label: false,
-                      placeholder: "Password confirmation",
+                      placeholder: "Confirm password",
                       input_html: { autocomplete: "new-password" } %>
-
-          <h3 class="h3-login">Let's create your avatar!</h3>
+          <div class="blue-headline">Now create your avatar!</div>
 
           <div class="row">
             <div class="col">
@@ -49,8 +48,8 @@
           <%= f.input :nickname, required: true, as: :hidden %>
 
           <div class="preview-box">
-            <div id="generate-nickname-btn" class="btn-primary btn-big-blue text-center" style="height: 38px; padding: 6px 12px;">
-              Generate Nickname
+            <div id="generate-nickname-btn" class="blue-button-full">
+              Generate Nickname *
             </div>
 
             <div class="d-flex justify-content-center avatar-nickname">
@@ -63,9 +62,9 @@
             </div>
           </div>
         </div>
-
+      <br>
         <div class="form-actions">
-          <%= f.button :submit, "Create Account", class: "btn-primary btn-big-blue" %>
+          <%= f.button :submit, "Create Account", class: "blue-button-full" %>
           <% end %>
         </div>
     </div>
@@ -76,7 +75,7 @@
 <!-- according to Figma, we don't this part but in case you want to have, you just need to activate the code. -->
 <!--     <p>Already a user?</p>
  -->    <%#- if controller_name != 'sessions' %>
-      <%#= link_to "Log in", new_session_path(resource_name) %><br />
+      <%#= link_to "Log in", new_session_path(resource_name) %>
     <%# end %>
 
 </div>
