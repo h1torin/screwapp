@@ -33,16 +33,28 @@ html {
   color: #0800d8;
   -webkit-text-stroke-width: 0.7px;
   -webkit-text-stroke-color: #0800d8;
-  text-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
+  text-shadow: 0px 1px 7px rgba(8, 0, 216, 0.19);
 }
+
+.profile-categories {
+  font-family: "Nanum Pen Script";
+  font-size: 24px;
+  color: #0800d8;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #0800d8;
+  text-align: center;
+  text-shadow: 0px 1px 7px rgba(8, 0, 216, 0.19);
+}
+
 .screw-headline {
   font-family: "Nanum Pen Script";
   font-size: 32px;
   color: #d80009;
   -webkit-text-stroke-width: 0.7px;
   -webkit-text-stroke-color: #d80009;
-  padding-left: 25px;
   padding-top: 10px;
+  text-align: center;
+  line-height: 32px;
 }
 
 .screw-home-headline {
@@ -134,10 +146,10 @@ html {
 
 .three-dots {
   background: url("3-dots.svg");
-  height: 20px;
-  width: 45px;
+  height: 10px;
+  width: 30px;
   display: block;
-  margin-top: 12px;
+  margin-top: 16px;
   margin-right: 10px;
   /* Other styles here */
 }
@@ -148,7 +160,7 @@ html {
   color: #0800d8;
   -webkit-text-stroke-width: 0.7px;
   -webkit-text-stroke-color: #0800d8;
-  text-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
+  text-shadow: 0px 1px 7px rgba(8, 0, 216, 0.19);
   padding-left: 5px;
   padding-bottom: 2px;
 }
@@ -175,4 +187,9 @@ html {
   padding-top: 50px;
   text-shadow: 0px 1px 7px rgba(0, 0, 0, 0.19);
   line-height: 34px;
+}
+
+.screw-paragraph {
+  text-align: center;
+  padding-top: 10px;
 }
