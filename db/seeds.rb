@@ -835,7 +835,7 @@ post.reactions.create(user: public_persona)
 post.comments.create(user: cool_girl, content: "This too shall pass")
 post.comments.create(user: family_guy, content: "Oh no! I feel so sorry for you")
 puts "Finished category"
-post = Post.create(user: family_guy, content: "I sent my mother in law hundreds of xrated photos over the course of multiple days and when she told me there might be a problem, I said "It's fine" and CONTINUED to show her filthy photos. FOR DAYS #screw #lovemylife #icanexplain #familyguy", category: family_category, created_at: DateTime.now - (rand * 8))
+post = Post.create(user: family_guy, content: "I sent my mother in law hundreds of xrated photos over the course of multiple days and when she told me there might be a problem, I said 'It's fine" and CONTINUED to show her filthy photos. FOR DAYS #screw #lovemylife #icanexplain #familyguy", category: family_category, created_at: DateTime.now - (rand * 8))
 post.reactions.create(user: cool_girl)
 post.reactions.create(user: family_guy)
 post.reactions.create(user: cool_mom)
