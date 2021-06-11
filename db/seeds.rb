@@ -505,8 +505,6 @@ https://www.google.com/amp/s/www.urbandictionary.com/define.php%3fterm=barber%2b
 
 The first definition of the page on that time was this montrosity.
 
-'When a heterosexual couple are having sexual intercourse, with the woman, who is menstuating, is riding on top, and the man ejaculates. After a moment she dismounts and the combination of blood and semen mixed on the erect penis simulates a barber pole.'
-
 She sent me a screenshot and asked me 'Uhh what?'. I fucked up. I panicked and scrambled as soon as I can to clarify that 'Oh god no, that's not what I meant, I thought it was a tubelight emoji'. I basically had to clarify that I was not a sick pervert was just an innocent mistake. She was still skeptical of me for a few days because of that. #screw #einstein #lovemylife", category: relationship_category, created_at: DateTime.now - (rand * 8))
 post.reactions.create(user: cool_girl)
 post.reactions.create(user: family_guy)
